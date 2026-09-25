@@ -1,7 +1,9 @@
 item,qty,spec,supplier,unit_cost_usd,make_buy,notes
-Aluminum or HDPE cartridge shell with fins,,,,,,
-"Phase-change material fill (water, salt hydrate or paraffin grades)",,,,,,
-Fill port and seal,,,,,,
-Handle and keyed latch,,,,,,
-Temperature label and indicator,,,,,,
-Cabinet adapter frame,,,,,,
+1 Cartridge shell,1,"6063 aluminium rectangular tube 152.4 x 50.8 x 3.18 mm (6 x 2 x 1/8 in), 270 mm long, with nine 5 x 1.5 mm aluminium fin strips bonded to top and bottom faces",Metals supplier,17.00,make,Indicative price; stock tube proposed (awaiting Amish)
+2 PCM fill,1,"About 1.1 kg of grade C5, C25 or H70 organic paraffin (Rubitherm RT 5 HC, RT 25 HC or RT 70 HC class); filled hot to 90 % of inner volume",PCM supplier,10.00,buy,Indicative sample-quantity price per cartridge; grades proposed (awaiting Amish)
+3 End caps with O-ring seals,2,"12 mm 6061 aluminium plate with 10 mm plug, FKM O-ring and six countersunk stainless screws each",Self and metals supplier,4.00,make,Indicative; material and O-ring cost
+4 Fill port plug and seal,1,"G 1/2 or G 3/4 plug with bonded FKM seal, tapped into the handle-end cap",Hardware supplier,3.00,buy,Indicative price
+5 Handle and keyed nose,1,"Bent aluminium flat bar handle with silicone or phenolic grip sleeve; aluminium key tab at the grade position",Self,4.00,make,Indicative; grip sleeve needed for R14
+6 Grade label and melt indicator,1,"Colour-coded polyester label; sight window with a small sealed glass vial of the same PCM",Label printer and lab supplier,3.00,buy,Indicative price
+7 Cabinet adapter frame,1,"Bent 1.5 mm aluminium sheet tray, 310 x 172 x 40 mm, side rails and keyed stop",Self,15.00,make,Indicative; one per host slot
+8 Hardware and consumables,1,"High-temperature structural epoxy for fins, thread sealant, deburring and cleaning supplies",Self,4.00,buy,Indicative price; per cartridge
