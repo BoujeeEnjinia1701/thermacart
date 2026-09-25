@@ -1,0 +1,17 @@
+# Card metadata consumed by https://designmolecule.com
+name: ThermaCart
+slug: thermacart
+area: Shared Components
+status: concept          # concept | design | prototype | tested | released
+shortlisted: false
+pitch: >-
+  A sealed, swappable phase-change thermal cartridge in a few standard temperature ranges (cold chain, comfort and cooking) that stores heat or cold and drops into coolers, cabinets and heat exchangers.
+problem: >-
+  Thermal storage is designed from scratch in every cold box, cooker and heat store, and phase-change materials are messy, corrosive or unsafe when handled loose.
+budget_usd: 80
+difficulty: 2  # 1 easiest, 5 hardest
+hero_image: media/hero.png
+licenses:
+  hardware: CERN-OHL-S-2.0
+  software: MIT
+tags: [shared-components, open-hardware, cern-ohl-s]
