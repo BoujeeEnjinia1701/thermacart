@@ -2,7 +2,12 @@
 name: ThermaCart
 slug: thermacart
 area: Shared Components
-status: concept          # concept | design | prototype | tested | released
+trl: 2                   # Technology Readiness Level, see .kit/STANDARDS.md section 9
+trl_target: 3
+trl_evidence:
+  - docs/01-problem.md
+  - docs/02-concept.md
+  - docs/03-requirements.md
 shortlisted: false
 pitch: >-
   A sealed, swappable phase-change thermal cartridge in a few standard temperature ranges (cold chain, comfort and cooking) that stores heat or cold and drops into coolers, cabinets and heat exchangers.
