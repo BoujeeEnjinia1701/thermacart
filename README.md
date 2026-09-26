@@ -1,20 +1,20 @@
 # ThermaCart
 
-![TRL 2](https://img.shields.io/badge/TRL-2%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827)
+![TRL 3](https://img.shields.io/badge/TRL-3%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827)
 
-**Area:** Shared Components · **TRL:** 2 of 9 (concept formulated) · **Prototype budget:** about $80 USD · **Difficulty:** 2 of 5
+**Area:** Shared Components · **TRL:** 3 of 9 (proof of concept on paper) · **Prototype budget:** about $80 USD · **Difficulty:** 2 of 5
 
-A sealed, swappable phase-change thermal cartridge in a few standard temperature ranges (cold chain, comfort and cooking) that stores heat or cold and drops into coolers, cabinets and heat exchangers.
+A sealed, swappable phase-change thermal cartridge in a few standard temperature ranges (cold chain, comfort and hot holding) that stores heat or cold and drops into coolers, cabinets and heat exchangers.
 
 ![ThermaCart concept](media/hero.png)
 
-[Interactive 3D model](media/viewer.html) · [Concept blueprint (PDF)](media/concept-blueprint.pdf) · [Review note](docs/REVIEW.md)
+[Interactive 3D model](media/viewer.html) · [Concept blueprint (PDF)](media/concept-blueprint.pdf) · [General arrangement (PDF)](cad/drawings/TCT-DWG-001.pdf) · [Calculations](docs/04-calcs/01-sizing.md) · [Review note](docs/REVIEW.md)
 
 ## Concept rationale
 
 A common cartridge format turns thermal storage into a part you choose instead of a subsystem you design, and lets cartridges move between cold boxes, ovens and heat stores. Phase-change material (PCM) holds heat or cold at a nearly constant temperature, so the grade of the fill, not a thermostat, sets the temperature of the box it sits in. Sealing the PCM in a keyed cartridge keeps a messy or combustible material out of users' hands and stops the wrong temperature going into the wrong box.
 
-The design is open and garage-buildable on purpose. The shell is a stock 6 x 2 in aluminium tube with bolted, O-ring-sealed end caps, so anyone with a drill press and a tap set can make one, and the envelope fits a GN 1/3 gastronorm slot that commercial kitchens already use. Publishing the envelope, key table and fill recipes lets other open projects, including ColdPod and ZeerBox in this portfolio, design around the same cartridge.
+The design is open and garage-buildable on purpose. The shell is a stock 6 x 2 in aluminium tube with screwed, O-ring-sealed end caps built up from flat plate, so anyone with a drill press and a tap set can make one without milling, and the envelope fits a GN 1/3 gastronorm slot that commercial kitchens already use. Publishing the envelope, key table and fill recipes lets other open projects, including ColdPod and ZeerBox in this portfolio, design around the same cartridge.
 
 ## Burning platform
 
@@ -57,7 +57,7 @@ Full problem statement: [docs/01-problem.md](docs/01-problem.md)
 
 ## Concept
 
-A sealed aluminium cartridge, 322 x 152 x 61 mm, holds about 1.1 kg of PCM in one of three proposed grades: C5 (5 °C, cold chain), C25 (25 °C, comfort) and H70 (70 °C, hot holding of cooked food). It fits a GN 1/3 slot, shows its state through a sight window and locks into an adapter frame whose key accepts only its grade. First-order estimates: 55 to 67 Wh of usable storage per cartridge, 2.6 kg filled and about $49 in parts. Two C5 cartridges hold a 25 L cooler at 2 to 8 °C for about 8 h at 32 °C, and one H70 cartridge keeps a GN carrier at 63 °C or more for about 6 h. The C5 storage target, the PCM mass fraction and the H70 handle temperature are not met on paper yet (see the [review note](docs/REVIEW.md)). All values are estimates, and all choices are proposed, awaiting Amish.
+A sealed aluminium cartridge, 323 x 152 x 64 mm, holds 1.10 to 1.18 kg of PCM in one of three grades: C5 (5 °C, cold chain), C25 (25 °C, comfort) and H70 (70 °C, hot holding of cooked food). It fits a GN 1/3 slot, carries by a folding bail, shows its state through a sight window and locks into an adapter frame whose key accepts only its grade. The TRL 3 calculations ([TCT-CAL-001](docs/04-calcs/01-sizing.md)) give 65, 61 and 73 Wh of usable storage, 2.9 to 3.0 kg filled and about $71 in parts per cartridge. One H70 cartridge keeps a GN carrier at 63 °C or more for about 7 h. Two C5 cartridges store enough cold for a 25 L cooler for about 9.7 h at 32 °C, but on paper they cannot draw heat out of the cooler air fast enough to hold 2 to 8 °C for more than about 2 h, so the cold-chain hold time (R10), the PCM mass fraction (R5) and the cost target (R16) are not met; see the [review note](docs/REVIEW.md). The design choices are adopted as recommended for TRL 3 under Amish's 2026-09-25 instruction and remain open for his review ([TCT-DDR-001](docs/decisions/0001-trl2-review-decisions.md)).
 
 Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [docs/03-requirements.md](docs/03-requirements.md)
 
@@ -69,15 +69,16 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 2. PCM fill: C5, C25 or H70 paraffin grade (water W0 as an option for produce only)
 3. End caps with FKM O-ring seals
 4. Fill port plug and seal
-5. Handle with insulating grip, and keyed nose
+5. Folding bail handle on a thermal break, and keyed nose
 6. Grade label and melt indicator (sight window)
 7. Cabinet adapter frame with keyed stop
+8. Cap screws and consumables
 
-The working bill of materials is in [bom/bom.csv](bom/bom.csv).
+The priced bill of materials is in [bom/bom.csv](bom/bom.csv): about $71 per cartridge and $16 per frame (indicative), $87 for the first C5 build against the $80 budget. The parametric model is [cad/src/model.py](cad/src/model.py), with STEP and STL exports in `cad/step/` and `cad/stl/`.
 
 ## Safety
 
-> Paraffin fills are combustible: never charge a cartridge on an open flame or above 100 °C, and keep cartridges away from fire. H70 cartridges reach about 75 °C and can burn skin, so carry them only by the insulated handle. Fill hot to the specified level and never seal a partly filled cartridge, so it cannot pressurise. C5 cartridges come out of a freezer below 0 °C; ThermaCart is not qualified for vaccines or medicines. Deburr all cut aluminium.
+> Paraffin fills are combustible: never charge a cartridge on an open flame, set an oven to 85 °C and never let an H70 cartridge exceed 90 °C, and keep cartridges away from fire. Keep C5 below 45 °C and C25 below 65 °C. H70 cartridges reach 70 to 85 °C and can burn skin; carry them only by the bail, and use oven gloves or wait about 12 min after an oven. Fill hot to the specified level and never seal a partly filled cartridge. C5 cartridges come out of a freezer below 0 °C; ThermaCart is not qualified for vaccines or medicines. Deburr all cut aluminium.
 
 ## Repository layout
 

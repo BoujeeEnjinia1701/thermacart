@@ -55,3 +55,79 @@ Requirements not met or at risk: R3 (C5), R5, R10, R12 (C5) and R14 (H70). R6 (s
 ### Recommended next step
 
 Review this note and the media, and decide items 1 to 6. If approved, run `/advance-trl3` to calculate storage, hold times, charge times, handle temperature and internal pressure per grade (CAL), build the parametric model with STEP export and the drawing sheet, and price every BOM line.
+
+## Session 2026-09-25: TRL 3
+
+Amish asked for this batch to be taken through the usual process with the instruction "you know the drill, nothing gets past TRL 3". He has not reviewed this repo's TRL 2 items one by one, so every item with a recommendation is adopted as recommended for TRL 3 under that instruction, open for his review, and items without one stay open. TRL 4 is on hold by Amish's instruction.
+
+### What was done
+
+- `docs/decisions/0001-trl2-review-decisions.md` (TCT-DDR-001 v0.1): items D1 to D8 adopted as recommended for TRL 3, open for review; TRL 3 refinements T1 to T4; open items O1 to O9.
+- `docs/04-calcs/01-sizing.md` (TCT-CAL-001 v0.1) and `docs/04-calcs/sizing.py`: geometry and mass, storage per grade from the Rubitherm datasheets, pressure and wall stress (including the 2 mm wall of D5), hold times with a two-node heat model, recharge (Stefan model), handle temperature, keying and cost, with a results table for R1 to R18. The script imports the model and reads the BOM and `project.yaml`.
+- `cad/src/model.py`: parametric build123d model (tube, fins, cap stacks, O-rings, screws, fill port, folding bail on a thermal break, grade key, label and window, adapter frame). Exports `cad/step/` and `cad/stl/`: `thermacart-assembly`, `tc-l-cartridge`, `end-cap`, `adapter-frame`.
+- `cad/src/sheets.py` and `cad/drawings/TCT-DWG-001.svg`, `.pdf`, `.png`: general arrangement at Rev P1, scale 1:2.5, marked "CONCEPT, NOT FOR FABRICATION" and "PRELIMINARY, NOT FOR FABRICATION". The concept blueprint keeps TCT-DWG-010, so DWG-001 was the next free number.
+- `bom/bom.csv` and `bom/bom-notes.md`: every line priced (indicative, not quoted) with a supplier type.
+- `cad/src/concept_media.py` now builds from the model; all media refreshed (`hero`, `concept-blueprint` `.png`, `.pdf`, `.svg`, `exploded`, `cutaway`, `flow`, `model.glb`, `viewer.html`) and checked by eye. Temporary `media/_views*` folders removed. The kit's cutaway cuts at the mean Y of the parts; the cartridge is centred on the origin, so no shift was needed.
+- TCT-PRB-001, TCT-PRC-001 and TCT-REQ-001 revised to v0.3; `README.md` and `project.yaml` updated (pitch reworded under D3; `trl: 3`, `trl_target: 3`, evidence listed). PDFs rebuilt in `docs/pdf/`.
+
+### Requirements (TCT-CAL-001, Table 5)
+
+Counts: 3 not met, 3 at risk, 3 not verifiable at TRL 3, 9 met.
+
+| ID | Status | Value against target |
+| --- | --- | --- |
+| R5 | **Not met** | PCM 38.3 to 39.9 % of filled mass against 50 %; the solid cap stacks weigh about 0.27 kg each |
+| R10 | **Not met** | Two C5 hold a 25 L cooler at 2 to 8 °C for 1.9 h (bare) or 2.4 h (dark finish) at 32 °C against 8 h. The stored energy (131 Wh) would last 9.7 h; the limit is heat transfer from the cooler air (about 0.5 to 1.1 W/K per cartridge). Direct contact with the load is not credited |
+| R16 | **Not met** | $71 per cartridge against $50 (frame $16, met); the first C5 build is $87 against the $80 budget |
+| R1 | At risk | RT 25 HC melts from 22 °C, below the 24 to 27 °C C25 band; C5 and H70 met |
+| R12 | At risk | Freezer, refrigerator (C25) and 85 °C oven all within 8 h; a 60 W pad takes 2.7 to 10.3 h depending on convection in the melt |
+| R14 | At risk | H70 bail 42.5 °C on its thermal break, but at 85 °C for about 12 min after an oven |
+| R6, R7, R17 | Not verifiable at TRL 3 | Seal, drop (surge up to 5 bar flagged), cycle life and fill recipe need TRL 4 work |
+| R2, R3, R4, R8, R11 | Met by calculation | 323.4 x 152.4 x 63.5 mm; C5 65.4, C25 60.5, H70 72.9 Wh; 2.89 to 2.96 kg (thin); 0 bar at fill, +0.29 bar over limit, 56 MPa wall stress; 7.2 h hot hold |
+| R9, R13, R15, R18 | Met by design | Keying checked for every pairing; sight window; aluminium, FKM and 120 °C epoxy with paraffins; drain through the fill port |
+
+Changes against TRL 2: C5 now meets R3 (verified datasheet values); R10 moved from at risk to not met; R16 from met to not met; mass rose from about 2.6 to 2.9 kg. The H70 charge limit was 100 °C in the TRL 2 documents; the RT 70 HC datasheet limit is 90 °C, and R12 and the safety text are corrected.
+
+### Decisions recorded (TCT-DDR-001)
+
+Adopted as recommended for TRL 3 under Amish's 2026-09-25 instruction, open for his review:
+
+- D1 stock 6 x 2 x 1/8 in tube in a GN 1/3 envelope; D2 C5, C25, H70 paraffins, W0 produce-only option, C5 first; D3 pitch reworded to "cold chain, comfort and hot holding" (applied to `project.yaml` and `README.md`); D4 grade keying with a published key table and a sight-window indicator; D5 2 mm wall evaluated and not adopted (it would yield under the cold vacuum and adds only 3.5 % volume); D6 `budget_usd` kept at $80 for one C5 cartridge and one frame (unchanged in `project.yaml`); D7 first host type a produce cooler user through a local partner; D8 fill as liquid at the grade limit and seal for life, aluminium shell, no HDPE.
+- TRL 3 refinements within those decisions, also open for review: T1 folding bail on a thermal break (the fixed handle left about 14 mm for fingers); T2 cap stack from flat plate and a 280 mm tube (no milling); T3 stock 1/4 x 1/16 in fin bar; T4 R12 oven 85 °C, never above 90 °C, and storage limits of 45 °C (C5) and 65 °C (C25).
+
+### Still awaiting Amish
+
+1. **O1 Named co-design partner and region** for the first produce cooler. No recommendation.
+2. **O2 ColdPod or ZeerBox dependency.** No recommendation; neither repo is in this batch.
+3. **O3 C5 charging.** Freezer plus conditioning, or refrigerator. No recommendation at TRL 2; CAL shows a refrigerator takes 31 to 51 h, which favours the freezer.
+4. **O4 R5.** Options: (a) relax R5 to 38 % for the stock-tube build; (b) lighten the caps (a pocketed plug needs a machine shop and adds cost); (c) keep 50 % for a later extrusion. Recommendation: (a) with (c) as the long-term target.
+5. **O5 R10.** Options: (a) dark finish plus guidance to lay produce on the cartridges, then measure at TRL 4; (b) three or four cartridges per cooler; (c) restate R10 for a lower ambient or a shorter day. Recommendation: (a), with R10 kept as the target until a test shows the contact effect.
+6. **O6 R16 and budget.** One C5 cartridge and one frame cost $87 against $80 (indicative). Options: (a) drop the fins for the first build (saves about $8, costs coupling in R10 and R12); (b) get quotes first and revisit; (c) raise the budget to about $90. Recommendation: (b); do not raise the budget until quotes are in.
+7. **O7 R14.** A handling rule for H70 out of an oven (oven gloves or a 12 min wait) on the label. Recommendation: adopt the rule and prefer pad charging.
+8. **O8 Surface finish.** Mill finish or dark paint or anodizing. Recommendation: dark finish; it helps R10, R11 and R12 at small cost.
+9. **O9 R1 for C25.** Widen the C25 band to 22 to 27 °C, or seek a paraffin melting within 24 to 27 °C. Recommendation: widen the band; comfort uses do not need a tighter one.
+
+### Consistency with shared components
+
+ThermaCart uses none of the other shared components in this batch (FieldNode, CellGuard, MotionCore, TwinKit, CalRig) and none of them references it; GridBench's review lists it as not applicable. No sibling repo was changed and no conflict was found. No SwapCell pack is used.
+
+### Citations
+
+The Rubitherm product page and the RT 5 HC, RT 25 HC and RT 70 HC datasheets were fetched on 2026-09-25 and their figures are used in TCT-CAL-001; the datasheet links are added to TCT-PRC-001 and TCT-PRB-001. The TRL 2 note listed no unchecked citations. The ISO 13732-1 burn thresholds used for R14 could not be checked (the standard is paywalled and WebSearch is exhausted); they are flagged as assumptions in TCT-CAL-001 and TCT-REQ-001.
+
+### Safety concerns
+
+- H70 charging: the RT 70 HC limit is 90 °C, not 100 °C as the TRL 2 documents said; domestic oven thermostats can overshoot, so an oven thermometer is needed.
+- C5 and C25 have datasheet limits of 45 and 65 °C; a cartridge left in a hot car may exceed them.
+- Frozen cartridges hold a partial vacuum of about 0.7 bar; walls are within the allowable stress at 3.175 mm but a thinner wall would yield.
+- A dropped molten cartridge may see a pressure surge of up to 5 bar at the cap (unverified; R6 test at TRL 4).
+- Hot bail and grip for about 12 min after an oven (R14).
+- Paraffin is combustible; C5 is below 0 °C out of a freezer; not for vaccines or medicines; W0 never with them; sharp edges; 3 kg mass.
+
+### TRL 4 material
+
+None found in the repo; nothing was added. `build-log/README.md` is the scaffold file and was not touched.
+
+### Recommended next step
+
+Review TCT-DDR-001 and items O1 to O9 above, starting with O5 (R10) and O6 (cost), since they decide whether the C5 cold-chain case is worth building. Before any build, replace the indicative BOM prices with supplier quotes. TRL 4 is on hold by Amish's instruction. For the record only, TRL 4 would need: a built C5 cartridge and frame, a lab test report (TST, `environment: lab`) covering leak-tightness through thermal cycles, the 1 m drop (R6), the cooler hold with a real 25 L box and load (R10), freezer and pad charge times (R12) and bail temperature (R14), a written fill recipe (R17), and dated build-log entries.

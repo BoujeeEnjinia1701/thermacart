@@ -3,7 +3,7 @@ doc_id: TCT-PRB-001
 title: ThermaCart problem statement
 project: ThermaCart
 doc_type: Problem statement
-version: "0.2"
+version: "0.3"
 status: Draft
 date: '2026-09-25'
 author: Amish Chadha
@@ -17,6 +17,10 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Populate to TRL 2 (users, context, constraints, prior work with sources)
+- version: "0.3"
+  date: '2026-09-25'
+  author: Amish Chadha
+  change: TRL 3 update (paraffin expansion from datasheets, budget scope per TCT-DDR-001 D6, first host type, temperature limits)
 ---
 
 # ThermaCart problem statement
@@ -55,12 +59,14 @@ The gap is an open cartridge: a published envelope, a small set of temperature g
 ## Known material problems
 
 - **Salt hydrates** are dense and cheap but supercool, separate into phases over cycling and corrode aluminium and copper ([corrosion study](https://www.researchgate.net/publication/229021530_Corrosive_effects_of_salt_hydrate_phase_change_materials_used_with_aluminium_and_copper); [cycling study](https://www.sciencedirect.com/science/article/abs/pii/S2352152X19315464)).
-- **Paraffins** are stable and non-corrosive but combustible, expand by around 10 % on melting (estimate, to be confirmed per grade), and soften or permeate some plastics, including polyethylene ([compatibility of plastics with PCM](https://www.researchgate.net/publication/227717836_Compatibility_of_plastic_with_phase_change_materials_PCM)).
+- **Paraffins** are stable and non-corrosive but combustible, expand by 12.5 to 13 % on melting ([Rubitherm RT 5 HC](https://www.rubitherm.eu/media/products/datasheets/Techdata_-RT5HC_EN_23072026.PDF) and [RT 25 HC](https://www.rubitherm.eu/media/products/datasheets/Techdata_-RT25HC_EN_21012026.PDF) datasheets), and soften or permeate some plastics, including polyethylene ([compatibility of plastics with PCM](https://www.researchgate.net/publication/227717836_Compatibility_of_plastic_with_phase_change_materials_PCM)).
 - **Water** is the cheapest store but expands on freezing and sits at 0 °C, which is too cold for vaccines and some produce.
 
 ## Constraints
 
-- Garage-buildable prototype for about $80 USD, using stock aluminium sections, hand tools, a drill press and a tap set. No custom extrusion, casting or welding for the first build.
+- Garage-buildable prototype for about $80 USD, using stock aluminium sections, hand tools, a drill press and a tap set. No custom extrusion, casting, milling or welding for the first build. The $80 covers one C5 cartridge and one adapter frame; a set in all three grades is outside it (TCT-DDR-001, D6, adopted for TRL 3 work and open for Amish's review).
+- First host type: a produce cooler used by a trader or smallholder, reached through a local partner (TCT-DDR-001, D7); no partner is named yet.
+- Each paraffin grade has a datasheet maximum operating temperature (C5 45 °C, C25 65 °C, H70 90 °C) that charging and storage must respect.
 - Sealed for life in normal use; refillable only by a builder with the fill recipe.
 - Safe to carry by hand at any state of charge; no pressure vessel.
 - Open design under CERN-OHL-S-2.0, with published fill recipes and grade data.
@@ -68,5 +74,5 @@ The gap is an open cartridge: a published envelope, a small set of temperature g
 ## Out of scope
 
 - Qualification for vaccines or medicines. A C5 cartridge could support a cold box such as ColdPod, but any medical use needs WHO PQS or equivalent qualification, which is beyond this project.
-- High-temperature storage above about 100 °C (for example solar cooking at 200 °C or more). That needs different materials and belongs with ThermaBrick-type designs.
+- High-temperature storage above 90 °C, the limit of the H70 paraffin, for example solar cooking at 200 °C or more. That needs different materials and belongs with ThermaBrick-type designs.
 - Active parts: the cartridge has no electronics, heaters or fans. Charging uses existing freezers, ovens, heat stores or host appliances.
