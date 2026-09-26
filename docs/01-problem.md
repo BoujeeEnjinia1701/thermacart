@@ -3,7 +3,7 @@ doc_id: TCT-PRB-001
 title: ThermaCart problem statement
 project: ThermaCart
 doc_type: Problem statement
-version: "0.3"
+version: "0.4"
 status: Draft
 date: '2026-09-25'
 author: Amish Chadha
@@ -21,6 +21,10 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: TRL 3 update (paraffin expansion from datasheets, budget scope per TCT-DDR-001 D6, first host type, temperature limits)
+- version: "0.4"
+  date: '2026-09-25'
+  author: Amish Chadha
+  change: Recommendations accepted by Amish (DDR-002)
 ---
 
 # ThermaCart problem statement
@@ -64,7 +68,7 @@ The gap is an open cartridge: a published envelope, a small set of temperature g
 
 ## Constraints
 
-- Garage-buildable prototype for about $80 USD, using stock aluminium sections, hand tools, a drill press and a tap set. No custom extrusion, casting, milling or welding for the first build. The $80 covers one C5 cartridge and one adapter frame; a set in all three grades is outside it (TCT-DDR-001, D6, adopted for TRL 3 work and open for Amish's review).
+- Garage-buildable prototype for about $80 USD, using stock aluminium sections, hand tools, a drill press and a tap set. No custom extrusion, casting, milling or welding for the first build. The $80 covers one C5 cartridge and one adapter frame; a set in all three grades is outside it (TCT-DDR-001, D6, decided by Amish on 2026-09-25). Supplier quotes come before any budget change (TCT-DDR-002, O6).
 - First host type: a produce cooler used by a trader or smallholder, reached through a local partner (TCT-DDR-001, D7); no partner is named yet.
 - Each paraffin grade has a datasheet maximum operating temperature (C5 45 °C, C25 65 °C, H70 90 °C) that charging and storage must respect.
 - Sealed for life in normal use; refillable only by a builder with the fill recipe.

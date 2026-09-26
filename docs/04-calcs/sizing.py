@@ -1,9 +1,11 @@
-"""ThermaCart sizing calculations, TCT-CAL-001 (TRL 3).
+"""ThermaCart sizing calculations, TCT-CAL-001 v0.2 (TRL 3).
 
 Run from the repo root:  python docs/04-calcs/sizing.py
 Prints every number quoted in docs/04-calcs/01-sizing.md, tagged [A1], [B2] and so on.
 Geometry comes from cad/src/model.py (PARAMS, derived() and the build123d solids), costs
-from bom/bom.csv and the budget from project.yaml. First-principles estimates for a paper
+from bom/bom.csv and the budget from project.yaml. The shell carries the dark finish decided in
+TCT-DDR-002 (O8), so the dark-finish (emissivity 0.9) results are the design values; the bare
+mill-finish results are kept for comparison. First-principles estimates for a paper
 proof of concept; not a substitute for tests.
 """
 import csv
@@ -99,6 +101,7 @@ fixed = {                                                   # kg, items not mode
     "label, window, vial": 0.015,
     "phenolic thermal-break washers": vol["thermal_break"] * 1.4 / 1e3,
     "epoxy and sealant": 0.010,
+    "matte black high-temperature paint and primer, about 50 um dry (DDR-002, O8)": 0.015,
 }
 m_shell = m_al + sum(fixed.values())
 tag("A4", "Aluminium parts from the model: " + ", ".join(f"{k} {vol[k]:.0f} cm3" for k in al_parts)

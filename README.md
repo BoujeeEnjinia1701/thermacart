@@ -47,7 +47,7 @@ On the hot side, about 2.1 billion people still cook with polluting fuels, and h
 
 ## What sparked the idea
 
-It came out of a September 2026 review of Design Molecule's applied research areas against the open projects already in the lab. ThermaBrick, ZeerBox, ColdPod and HelioLite each store heat or cold in their own way. The real-world trigger was that WHO standardised vaccine coolant packs by size ([WHO PQS E005](https://extranet.who.int/prequal/key-resources/documents/pqs-performance-specification-e005ip012-water-packs-use-icepacks-cool-packs)), but only for water, so there is no open equivalent for other temperatures.
+The starting point was the gastronorm pan. On 17 November 1964 Swiss hotel associations agreed on a basic 530 x 325 mm container size, and in 1993 the format became the European standard EN 631 ([Gastronorm](https://en.wikipedia.org/wiki/Gastronorm)). Because every pan, oven, trolley and carrier now shares those sizes, kitchens mix equipment from any maker without thinking about it. Thermal storage never got the same treatment: each cold box and food carrier still has its own ice pack or heat pack. ThermaCart asks what a gastronorm for stored heat and cold would look like, so it takes the GN 1/3 footprint as its envelope and adds the missing layer, a small set of keyed temperature grades.
 
 ## Problem
 
@@ -57,7 +57,7 @@ Full problem statement: [docs/01-problem.md](docs/01-problem.md)
 
 ## Concept
 
-A sealed aluminium cartridge, 323 x 152 x 64 mm, holds 1.10 to 1.18 kg of PCM in one of three grades: C5 (5 °C, cold chain), C25 (25 °C, comfort) and H70 (70 °C, hot holding of cooked food). It fits a GN 1/3 slot, carries by a folding bail, shows its state through a sight window and locks into an adapter frame whose key accepts only its grade. The TRL 3 calculations ([TCT-CAL-001](docs/04-calcs/01-sizing.md)) give 65, 61 and 73 Wh of usable storage, 2.9 to 3.0 kg filled and about $71 in parts per cartridge. One H70 cartridge keeps a GN carrier at 63 °C or more for about 7 h. Two C5 cartridges store enough cold for a 25 L cooler for about 9.7 h at 32 °C, but on paper they cannot draw heat out of the cooler air fast enough to hold 2 to 8 °C for more than about 2 h, so the cold-chain hold time (R10), the PCM mass fraction (R5) and the cost target (R16) are not met; see the [review note](docs/REVIEW.md). The design choices are adopted as recommended for TRL 3 under Amish's 2026-09-25 instruction and remain open for his review ([TCT-DDR-001](docs/decisions/0001-trl2-review-decisions.md)).
+A sealed aluminium cartridge, 323 x 152 x 64 mm, holds 1.10 to 1.18 kg of PCM in one of three grades: C5 (5 °C, cold chain), C25 (25 °C, comfort) and H70 (70 °C, hot holding of cooked food). It fits a GN 1/3 slot, carries by a folding bail, shows its state through a sight window and locks into an adapter frame whose key accepts only its grade. The shell carries a matte black finish that roughly doubles its heat exchange with the air. The TRL 3 calculations ([TCT-CAL-001](docs/04-calcs/01-sizing.md)) give 65, 61 and 73 Wh of usable storage, 2.9 to 3.0 kg filled and about $76 in parts per cartridge. One H70 cartridge keeps a GN carrier at 63 °C or more for about 13 h. Two C5 cartridges store enough cold for a 25 L cooler for about 9.7 h at 32 °C, but on paper they cannot draw heat out of the cooler air fast enough to hold 2 to 8 °C for more than about 2.4 h; users are told to lay produce directly on the cartridges, which the calculation does not credit. The cold-chain hold time (R10) and the cost target (R16) are not met; see the [review note](docs/REVIEW.md). The design choices were decided by Amish on 2026-09-25 ([TCT-DDR-001](docs/decisions/0001-trl2-review-decisions.md), [TCT-DDR-002](docs/decisions/0002-recommendations-accepted.md)).
 
 Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [docs/03-requirements.md](docs/03-requirements.md)
 
@@ -65,7 +65,7 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 
 ## Key components
 
-1. Cartridge shell: finned 6063 aluminium rectangular tube
+1. Cartridge shell: finned 6063 aluminium rectangular tube, matte black finish
 2. PCM fill: C5, C25 or H70 paraffin grade (water W0 as an option for produce only)
 3. End caps with FKM O-ring seals
 4. Fill port plug and seal
@@ -74,11 +74,11 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 7. Cabinet adapter frame with keyed stop
 8. Cap screws and consumables
 
-The priced bill of materials is in [bom/bom.csv](bom/bom.csv): about $71 per cartridge and $16 per frame (indicative), $87 for the first C5 build against the $80 budget. The parametric model is [cad/src/model.py](cad/src/model.py), with STEP and STL exports in `cad/step/` and `cad/stl/`.
+The priced bill of materials is in [bom/bom.csv](bom/bom.csv): about $76 per cartridge and $16 per frame (indicative), $92 for the first C5 build against the $80 budget; supplier quotes come before any budget change. The parametric model is [cad/src/model.py](cad/src/model.py), with STEP and STL exports in `cad/step/` and `cad/stl/`.
 
 ## Safety
 
-> Paraffin fills are combustible: never charge a cartridge on an open flame, set an oven to 85 °C and never let an H70 cartridge exceed 90 °C, and keep cartridges away from fire. Keep C5 below 45 °C and C25 below 65 °C. H70 cartridges reach 70 to 85 °C and can burn skin; carry them only by the bail, and use oven gloves or wait about 12 min after an oven. Fill hot to the specified level and never seal a partly filled cartridge. C5 cartridges come out of a freezer below 0 °C; ThermaCart is not qualified for vaccines or medicines. Deburr all cut aluminium.
+> Paraffin fills are combustible: never charge a cartridge on an open flame, set an oven to 85 °C and never let an H70 cartridge exceed 90 °C, and keep cartridges away from fire. Keep C5 below 45 °C and C25 below 65 °C. H70 cartridges reach 70 to 85 °C and can burn skin; carry them only by the bail, prefer pad charging, and after an oven use oven gloves or wait 12 min, as the label says. Fill hot to the specified level and never seal a partly filled cartridge. C5 cartridges come out of a freezer below 0 °C; ThermaCart is not qualified for vaccines or medicines. Deburr all cut aluminium.
 
 ## Repository layout
 

@@ -23,6 +23,9 @@ PARAMS = {
     # 1 fins: 6063 flat bar 1/4 x 1/16 in bonded on edge, top and bottom faces
     "fin_n": 9, "fin_h": 6.35, "fin_t": 1.59, "fin_edge": 10.0, "fin_inset": 8.0,
     "label_band": 95.0,                 # top fins cut back over this length at the handle end
+    # 1 finish (TCT-DDR-002, O8): outer shell, fins and caps painted matte black with a
+    #   high-temperature paint over etch primer, emissivity about 0.9; no geometry change
+    "finish": "matte black high-temperature paint, emissivity about 0.9",
     # 3 end caps: flange outside the tube, O-ring gland spacer and plug inside it
     "flange_t": 3.175, "spacer_t": 3.0, "gland_depth": 2.5, "plug_t": 9.525, "plug_clear": 0.2,
     "oring_cord": 3.0, "cap_screws": 6, "screw": "M5 x 12 A2 countersunk",

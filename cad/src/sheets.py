@@ -1,4 +1,4 @@
-"""ThermaCart general arrangement sheet TCT-DWG-001, Rev P1 (TRL 3).
+"""ThermaCart general arrangement sheet TCT-DWG-001, Rev P2 (TRL 3).
 
 Run from the repo root:  python cad/src/sheets.py
 Writes cad/drawings/TCT-DWG-001.svg, .pdf and .png from the parametric model in
@@ -94,10 +94,11 @@ def main():
     asm = assembly()
     views = safe_project_views(asm, work)
     bb = asm.bounding_box()
-    s = Sheet(project="ThermaCart", title="General arrangement, TC-L in frame", dwg_no="TCT-DWG-001", rev="P1",
+    s = Sheet(project="ThermaCart", title="General arrangement, TC-L in frame", dwg_no="TCT-DWG-001", rev="P2",
               author="Amish Chadha", date=DATE, scale=0.4, theme="technical",
-              material="6063-T52 tube, 6061 caps, 5052 frame; FKM seals. PRELIMINARY, NOT FOR FABRICATION",
-              revisions=[("P1", "Preliminary GA for TRL 3 (from cad/src/model.py)", DATE, "AC")])
+              material="6063-T52 tube, 6061 caps, 5052 frame; FKM seals; matte black finish. PRELIMINARY, NOT FOR FABRICATION",
+              revisions=[("P1", "Preliminary GA for TRL 3 (from cad/src/model.py)", DATE, "AC"),
+                         ("P2", "Dark finish and H70 handling rule added (TCT-DDR-002)", DATE, "AC")])
     s.add_ortho(views)
     k = s.scale
     c = ortho_cells(s, views)
@@ -157,6 +158,8 @@ def main():
         f"Folding bail on {P['break_t']:.0f} phenolic thermal break; finger gap {D['finger_gap']:.0f} when raised",
         "Key tab 30 wide, 16 high; centre Y: " + ", ".join(f"{g} {v:+.0f}" for g, v in ky.items()),
         f"Frame 1.5 sheet, {D['frame_l']:.0f} x {D['frame_w']:.0f}; end stop slot = key + {P['slot_clear']:.0f} each side",
+        "Finish: shell, fins and caps etch-primed, matte black high-temp paint (e about 0.9)",
+        "H70 label rule: from an oven use oven gloves or wait 12 min; pad charging preferred",
         "Sized in TCT-CAL-001; shown: C5 key and C5 frame",
         "Third-angle; front view from -Y; handle end at +X",
     ], x=276, y=120, width=146)

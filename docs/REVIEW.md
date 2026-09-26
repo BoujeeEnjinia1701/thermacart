@@ -30,7 +30,9 @@
 
 Requirements not met or at risk: R3 (C5), R5, R10, R12 (C5) and R14 (H70). R6 (seal and drop) and R7 (cycle life for salt hydrates) are not yet assessed.
 
-### Proposed, awaiting Amish
+### Proposed, awaiting Amish (status updated 2026-09-25)
+
+Items 1 to 7 are decided by Amish, 2026-09-25: go with recommendation (TCT-DDR-001 D1 to D7, TCT-DDR-002). Item 8 had no recommendation and stays proposed, awaiting Amish (O2).
 
 1. **Envelope.** (a) Stock 6 x 2 in aluminium tube sized to a GN 1/3 slot; (b) the WHO PQS 0.6 L pack envelope; (c) a custom finned extrusion. Recommendation: (a) now, (b) later as a small size, (c) only at volume.
 2. **Grades.** C5, C25 and H70 in organic paraffin, with water (W0) as a produce-only option and salt hydrates deferred to a lined variant. Recommendation: adopt, and build C5 first (lowest hazard, links to ColdPod).
@@ -90,12 +92,14 @@ Changes against TRL 2: C5 now meets R3 (verified datasheet values); R10 moved fr
 
 ### Decisions recorded (TCT-DDR-001)
 
-Adopted as recommended for TRL 3 under Amish's 2026-09-25 instruction, open for his review:
+Adopted as recommended for TRL 3 under Amish's 2026-09-25 instruction, open for his review. Now decided by Amish, 2026-09-25: go with recommendation (TCT-DDR-002):
 
 - D1 stock 6 x 2 x 1/8 in tube in a GN 1/3 envelope; D2 C5, C25, H70 paraffins, W0 produce-only option, C5 first; D3 pitch reworded to "cold chain, comfort and hot holding" (applied to `project.yaml` and `README.md`); D4 grade keying with a published key table and a sight-window indicator; D5 2 mm wall evaluated and not adopted (it would yield under the cold vacuum and adds only 3.5 % volume); D6 `budget_usd` kept at $80 for one C5 cartridge and one frame (unchanged in `project.yaml`); D7 first host type a produce cooler user through a local partner; D8 fill as liquid at the grade limit and seal for life, aluminium shell, no HDPE.
-- TRL 3 refinements within those decisions, also open for review: T1 folding bail on a thermal break (the fixed handle left about 14 mm for fingers); T2 cap stack from flat plate and a 280 mm tube (no milling); T3 stock 1/4 x 1/16 in fin bar; T4 R12 oven 85 °C, never above 90 °C, and storage limits of 45 °C (C5) and 65 °C (C25).
+- TRL 3 refinements within those decisions, now also decided by Amish, 2026-09-25: go with recommendation: T1 folding bail on a thermal break (the fixed handle left about 14 mm for fingers); T2 cap stack from flat plate and a 280 mm tube (no milling); T3 stock 1/4 x 1/16 in fin bar; T4 R12 oven 85 °C, never above 90 °C, and storage limits of 45 °C (C5) and 65 °C (C25).
 
-### Still awaiting Amish
+### Still awaiting Amish (status updated 2026-09-25)
+
+O4 to O9 are now decided by Amish, 2026-09-25: go with recommendation (TCT-DDR-002). O1 to O3 had no recommendation and stay proposed, awaiting Amish.
 
 1. **O1 Named co-design partner and region** for the first produce cooler. No recommendation.
 2. **O2 ColdPod or ZeerBox dependency.** No recommendation; neither repo is in this batch.
@@ -131,3 +135,51 @@ None found in the repo; nothing was added. `build-log/README.md` is the scaffold
 ### Recommended next step
 
 Review TCT-DDR-001 and items O1 to O9 above, starting with O5 (R10) and O6 (cost), since they decide whether the C5 cold-chain case is worth building. Before any build, replace the indicative BOM prices with supplier quotes. TRL 4 is on hold by Amish's instruction. For the record only, TRL 4 would need: a built C5 cartridge and frame, a lab test report (TST, `environment: lab`) covering leak-tightness through thermal cycles, the 1 m drop (R6), the cooler hold with a real 25 L box and load (R10), freezer and pad charge times (R12) and bail temperature (R14), a written fill recipe (R17), and dated build-log entries.
+
+## Session 2026-09-25: recommendations accepted
+
+Amish wrote on 2026-09-25: "i accept all your recommendations, go with them across all repos." Every item with a recommendation is now **decided by Amish, 2026-09-25: go with recommendation**, recorded in `docs/decisions/0002-recommendations-accepted.md` (TCT-DDR-002 v0.1). TCT-DDR-001 is at v0.2 with the new status wording.
+
+### Decisions applied and what changed
+
+- **D1 to D8 and T1 to T4:** status wording only; the design already followed them. D6 keeps `budget_usd` at $80 (unchanged). D3's pitch was already applied.
+- **O4, R5:** relaxed to 38 % PCM for the stock-tube build, 50 % kept for a later extrusion. Before: not met, 38.3 to 39.9 % against 50 %. After: met (thin), 38.1 to 39.7 % against 38 %.
+- **O5, R10:** dark finish plus guidance to lay produce on the cartridges (added to TCT-PRC-001, How it works); R10 kept at 8 h. Design-case hold 1.9 h (bare) before, 2.4 h (dark) after; still not met. The contact measurement is TRL 4: decided, on hold.
+- **O6, R16 and budget:** quotes first, budget not raised; `budget_usd` stays $80. Getting quotes is a purchasing step: decided, on hold with TRL 4.
+- **O7, R14:** H70 label rule (oven gloves or a 12 min wait) and pad charging preferred. R14 restated; at risk before, met with the handling rule after. Rule added to the precis, safety text, README and the drawing notes.
+- **O8, finish:** matte black high-temperature paint over etch primer on shell, fins and caps. BOM row 1 $24 to $29; cartridge $71 to $76; first build $87 to $92 against $80; three-grade set about $230 to $245; empty mass 1.78 to 1.80 kg; filled 2.89 to 2.96 kg to 2.90 to 2.98 kg. Design-case R11 hold 7.2 to 13.6 h; R12 C5 freezer 5.6 to 4.2 h, C25 refrigerator 6.6 to 4.6 h, H70 oven 6.1 to 5.3 h. `finish` parameter added to `cad/src/model.py` (no geometry change; STEP and STL re-exported); TCT-DWG-001 Rev P1 to P2 with finish and handling notes; media re-rendered with a black shell and checked by eye.
+- **O9, R1:** C25 band widened from 24 to 27 °C to 22 to 27 °C; at risk before, met after.
+- Documents bumped: TCT-PRB-001 v0.4, TCT-PRC-001 v0.4, TCT-REQ-001 v0.4, TCT-CAL-001 v0.2 (results table regenerated from `docs/04-calcs/sizing.py`), TCT-DDR-001 v0.2, TCT-DDR-002 v0.1 new. PDFs rebuilt.
+- `README.md`: Concept, Key components and Safety updated; "What sparked the idea" rewritten around the 1964 gastronorm standard (EN 631, 1993) in place of the earlier origin text.
+- Generated files (drawing, media, PDFs) re-rendered so they carry the designmolecule.com footer.
+
+### Requirement status (TCT-CAL-001 v0.2, Table 5)
+
+Counts: 2 not met, 1 at risk, 3 not verifiable at TRL 3, 12 met.
+
+| ID | Status | Value against target |
+| --- | --- | --- |
+| R10 | **Not met** | 2.4 h (dark finish) against 8 h at 32 °C; energy alone would last 9.7 h; produce contact not credited |
+| R16 | **Not met** | $76 per cartridge against $50; first build $92 against the $80 budget (indicative) |
+| R12 | At risk | Freezer, refrigerator and oven within 8 h; 60 W pad 2.7 to 10.3 h |
+| R6, R7, R17 | Not verifiable at TRL 3 | Need TRL 4 tests and the fill recipe |
+| R1, R2, R3, R4, R5, R8, R11, R14 | Met | R4 (2.98 kg against 3.0) and R5 (38.1 % against 38 %) are thin; R14 with the handling rule |
+| R9, R13, R15, R18 | Met by design | |
+
+### Still awaiting Amish
+
+1. **O1** Named co-design partner and region for the first produce cooler. No recommendation.
+2. **O2** Whether ColdPod or ZeerBox should declare ThermaCart as a dependency. No recommendation.
+3. **O3** C5 charging: freezer with conditioning, or refrigerator. No recommendation (CAL favours the freezer).
+
+### Cross-repo actions
+
+None. No decision requires a change in another repo; O2, the only cross-repo question, has no recommendation. No other repo was edited.
+
+### Safety concerns
+
+Unchanged from the TRL 3 session, plus: the dark finish must be a high-temperature paint rated well above 90 °C and must not be applied over the fill port thread, O-ring gland or sight window. The H70 label now carries the oven handling rule.
+
+### TRL 4
+
+TRL 4 remains on hold by Amish's instruction. `trl: 3` and `trl_target: 3` are unchanged. Decided but on hold: the R10 contact measurement (O5) and supplier quotes (O6).
