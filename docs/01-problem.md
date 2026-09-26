@@ -3,9 +3,9 @@ doc_id: TCT-PRB-001
 title: ThermaCart problem statement
 project: ThermaCart
 doc_type: Problem statement
-version: "0.4"
+version: "0.5"
 status: Draft
-date: '2026-09-25'
+date: '2026-09-26'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -25,6 +25,10 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Recommendations accepted by Amish (DDR-002)
+- version: "0.5"
+  date: '2026-09-26'
+  author: Amish Chadha
+  change: Stronger sources
 ---
 
 # ThermaCart problem statement
@@ -56,7 +60,7 @@ Storing heat or cold cheaply is the missing piece wherever power is intermittent
 - **Standard coolant packs.** WHO PQS E005 fixes the sizes of water packs for vaccine carriers (0.3, 0.4 and 0.6 L; the 0.6 L pack is 190 x 120 x 34 mm) ([WHO PQS E005](https://extranet.who.int/prequal/key-resources/documents/pqs-performance-specification-e005ip012-water-packs-use-icepacks-cool-packs)). This shows the value of a common envelope, but it covers water only, at 0 °C.
 - **Ice banks in solar refrigerators.** Solar direct-drive vaccine refrigerators freeze water or another PCM by day and run from that ice bank at night, giving about 83 to 170 h of autonomy in the prequalified models PATH lists ([PATH](https://media.path.org/documents/TS_opt_ebs_dd_solar_fridge.pdf)). The storage is built into each appliance.
 - **Heat batteries.** Sunamp's salt-hydrate heat batteries, developed with the University of Edinburgh, store heat for hot water in homes and hold RAL quality certification for stability over tens of thousands of cycles ([University of Edinburgh](https://chem.ed.ac.uk/research/research-impact/heat-storage-technology)). The RAL-GZ 896 scheme sets quality and test rules for PCMs ([Quality Association PCM](https://pcm-ral.org/quality-testing-specifications-pcm/)).
-- **Food service containers.** Gastronorm (EN 631) sizes are the shared format of commercial kitchens; a GN 1/3 slot is 325 x 176 mm ([Gastronorm](https://en.wikipedia.org/wiki/Gastronorm)).
+- **Food service containers.** Gastronorm sizes, standardized as EN 631-1 ([BSI, BS EN 631-1:1993](https://knowledge.bsigroup.com/products/materials-and-articles-in-contact-with-foodstuffs-catering-containers-specification-for-dimensions-of-containers)), are the shared format of commercial kitchens and derive from a 530 x 325 mm grid ([SVG, Merkblatt Gastro-Norm](https://svg.ch/merkblatt-gastro-norm/)); a GN 1/3 slot takes a third of the long side, 325 x 176 mm ([Gastronorm](https://en.wikipedia.org/wiki/Gastronorm)).
 
 The gap is an open cartridge: a published envelope, a small set of temperature grades, a fill and seal recipe, and a keyed interface, all under an open hardware license.
 

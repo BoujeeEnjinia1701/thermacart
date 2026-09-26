@@ -183,3 +183,9 @@ Unchanged from the TRL 3 session, plus: the dark finish must be a high-temperatu
 ### TRL 4
 
 TRL 4 remains on hold by Amish's instruction. `trl: 3` and `trl_target: 3` are unchanged. Decided but on hold: the R10 contact measurement (O5) and supplier quotes (O6).
+
+## Session 2026-09-26: sources strengthened
+
+- `README.md`, "What sparked the idea": the Wikipedia article "Gastronorm" was replaced by the primary sources for the same event: the SVG (Swiss association for hospital, care-home and institutional catering) Gastro-Norm fact sheet, which records that SVG, the Swiss Hotel Association and Swiss kitchen equipment makers created the norm on a 530 x 325 mm grid in November 1964, and the BSI record for BS EN 631-1:1993. The unsupported day ("17 November") was dropped. The inspiration event is unchanged; its line in `INSPIRATIONS.md` now names the sources.
+- `docs/01-problem.md` (TCT-PRB-001 v0.5): the Gastronorm prior-work line now cites BSI (EN 631-1) and SVG (530 x 325 mm grid); Wikipedia is kept only alongside them for the GN 1/3 size.
+- All other links in the four README source sections were re-fetched and confirmed (FAO, Hanson et al. 2017, WHO, UNEP, MoFPI, IFPRI, IEA, Eurostat, Delaware food code, University of Edinburgh). No country rows were replaced.

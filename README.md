@@ -47,7 +47,7 @@ On the hot side, about 2.1 billion people still cook with polluting fuels, and h
 
 ## What sparked the idea
 
-The starting point was the gastronorm pan. On 17 November 1964 Swiss hotel associations agreed on a basic 530 x 325 mm container size, and in 1993 the format became the European standard EN 631 ([Gastronorm](https://en.wikipedia.org/wiki/Gastronorm)). Because every pan, oven, trolley and carrier now shares those sizes, kitchens mix equipment from any maker without thinking about it. Thermal storage never got the same treatment: each cold box and food carrier still has its own ice pack or heat pack. ThermaCart asks what a gastronorm for stored heat and cold would look like, so it takes the GN 1/3 footprint as its envelope and adds the missing layer, a small set of keyed temperature grades.
+The starting point was the gastronorm pan. In November 1964 the Swiss association for institutional catering (SVG), the Swiss Hotel Association and Swiss makers of commercial kitchen equipment agreed on a kitchen norm built on a basic 530 x 325 mm grid ([SVG, Merkblatt Gastro-Norm](https://svg.ch/merkblatt-gastro-norm/)), and in 1993 the container dimensions were published as the European standard EN 631-1 ([BSI, BS EN 631-1:1993](https://knowledge.bsigroup.com/products/materials-and-articles-in-contact-with-foodstuffs-catering-containers-specification-for-dimensions-of-containers)). Because every pan, oven, trolley and carrier now shares those sizes, kitchens mix equipment from any maker without thinking about it. Thermal storage never got the same treatment: each cold box and food carrier still has its own ice pack or heat pack. ThermaCart asks what a gastronorm for stored heat and cold would look like, so it takes the GN 1/3 footprint as its envelope and adds the missing layer, a small set of keyed temperature grades.
 
 ## Problem
 
@@ -97,6 +97,12 @@ The priced bill of materials is in [bom/bom.csv](bom/bom.csv): about $76 per car
 ## Documentation
 
 Controlled documents follow the portfolio [documentation standard](.kit/STANDARDS.md). Each carries a document ID (TCT-PRC-001 for the precis), a version and a revision history. Branded PDFs are built with `python .kit/render.py` and attached to GitHub Releases when a document is tagged, for example `TCT-PRC-001/v1.0`.
+
+## Credits
+
+Designed by Amish Chadha. See [CONTRIBUTORS.md](CONTRIBUTORS.md) for roles. To cite this design, use [CITATION.cff](CITATION.cff) (GitHub shows it as "Cite this repository").
+
+AI assistance (Claude) was used to accelerate concept renders, prototype documentation and first-pass sizing calculations. Design direction and all decisions are Amish Chadha's, recorded in this repository's decision records (`docs/decisions/`).
 
 ## Licenses
 
