@@ -189,3 +189,34 @@ TRL 4 remains on hold by Amish's instruction. `trl: 3` and `trl_target: 3` are u
 - `README.md`, "What sparked the idea": the Wikipedia article "Gastronorm" was replaced by the primary sources for the same event: the SVG (Swiss association for hospital, care-home and institutional catering) Gastro-Norm fact sheet, which records that SVG, the Swiss Hotel Association and Swiss kitchen equipment makers created the norm on a 530 x 325 mm grid in November 1964, and the BSI record for BS EN 631-1:1993. The unsupported day ("17 November") was dropped. The inspiration event is unchanged; its line in `INSPIRATIONS.md` now names the sources.
 - `docs/01-problem.md` (TCT-PRB-001 v0.5): the Gastronorm prior-work line now cites BSI (EN 631-1) and SVG (530 x 325 mm grid); Wikipedia is kept only alongside them for the GN 1/3 size.
 - All other links in the four README source sections were re-fetched and confirmed (FAO, Hanson et al. 2017, WHO, UNEP, MoFPI, IFPRI, IEA, Eurostat, Delaware food code, University of Edinburgh). No country rows were replaced.
+
+## Session 2026-09-26: product appearance model and photoreal renders
+
+Amish chose this repo for the first batch of product renders on 2026-09-26. This session adds an appearance model for photoreal product renders; the massing model, BOM, documents and drawing are unchanged.
+
+### What was added
+
+- `cad/src/product_model.py`: `product_parts()` (66 parts: 23 shell, 6 internal, 4 accessory, 33 context), `TITLE` and `RENDER_VIEWS` (hero, exploded and a detail view of the keyed nose at the frame's end stop without the bench). It imports `PARAMS`, `derived()` and `build_parts()` from `cad/src/model.py`, so every main dimension and interface is unchanged. It adds:
+  - rounded outer corners (R4) on the tube and end flanges, softened fin edges, and a seam at each flange;
+  - cap screw heads with hex sockets at the model.py positions; a hex G 3/4 fill port plug with its FKM sealing washer and a shank in the bore;
+  - the folding bail with phenolic thermal-break washers, pivot pin heads and a ribbed silicone grip; the key tab with rounded leading edges;
+  - the printed label (grade block, wordmark, data lines, kit-accent stripe), a painted grade colour band round the nose end and a painted side marking;
+  - the sight window as a black bezel, a clear polycarbonate lens and the white (solid, charged) PCM vial under it;
+  - inside: the PCM fill, gland spacers and plugs, and FKM O-rings;
+  - the adapter frame with bend radii, a "C5 ONLY" grade decal beside the key slot and small rubber feet;
+  - context: a compact bench top, with the C25 (green) and H70 (red) grades lying behind the C5 cartridge as a lineup, each with its key tab at its own grade position.
+- `README.md`: hero image now points to `media/render-hero.png`, with a link to `media/render-exploded.png`. The render files are produced later by the orchestrator.
+
+### Where the appearance model differs from model.py (Proposed, awaiting Amish)
+
+1. **Grade colour band on the shell.** model.py and the BOM code the grade only by the label colour and the key position. The renders add an 18 mm painted band round the nose end in the grade colour (blue, green, red), visible from the side and when a cartridge sits in a frame. Recommendation: adopt it as a paint-masking step in BOM line 1 (no cost change within the indicative figure); the alternative is a colour-coded wrap label.
+2. **Side marking.** A painted "ThermaCart, TC-L C5" marking on the front face. Recommendation: adopt as part of the label set (BOM line 6).
+3. **Frame grade decal and feet.** A "C5 ONLY" decal beside the frame's key slot and four 1.2 mm rubber feet under the frame; neither is in model.py or BOM line 7. Recommendation: adopt the decal (it makes the keying legible to users); treat the feet as host-specific and leave them out of the BOM.
+4. **Sight window build-up.** model.py shows the window as a 22 mm solid disc on the label; the render shows the same 22 mm outline as a bezel ring with a 15 mm clear lens and the PCM vial as a thin disc under it, above the tube wall. Recommendation: keep the model.py envelope; the vial arrangement is a TRL 4 detail and is on hold.
+5. **Rounded tube corners.** model.py uses a sharp-cornered tube; stock 6 x 2 x 1/8 in tube has rounded outer corners, drawn here at R4. Recommendation: no change to model.py at TRL 3; confirm the supplier's corner radius with the quotes (O6).
+6. **Pivot pins and fill port hex.** Pin heads are drawn on the outer faces of the bail arms (model.py has no pins; BOM line 5 lists stainless pins). The fill port hex (about 26 mm across flats) and its 1.5 mm washer stay inside the model.py port envelope. Recommendation: no change.
+7. **Cap screws.** Shown as 1.2 mm proud heads at the model.py positions, as model.py draws them; BOM line 8 lists countersunk screws, which would sit flush. Recommendation: keep countersunk in the BOM and let the renders follow model.py for now.
+
+### Status
+
+This is an appearance model only: no tolerances, no fabrication detail, concept, not for fabrication. `trl` stays 3 and `trl_target` stays 3. TRL 4 remains on hold by Amish's instruction.
