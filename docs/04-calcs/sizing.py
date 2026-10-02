@@ -1,12 +1,14 @@
-"""ThermaCart sizing calculations, TCT-CAL-001 v0.2 (TRL 3).
+"""ThermaCart sizing calculations, TCT-CAL-001 v0.3 (TRL 3, constructable design, TCT-DDR-003).
 
 Run from the repo root:  python docs/04-calcs/sizing.py
 Prints every number quoted in docs/04-calcs/01-sizing.md, tagged [A1], [B2] and so on.
 Geometry comes from cad/src/model.py (PARAMS, derived() and the build123d solids), costs
-from bom/bom.csv and the budget from project.yaml. The shell carries the dark finish decided in
+from bom/bom.csv and the value-engineering target (`budget_usd`) from project.yaml. The shell carries the dark finish decided in
 TCT-DDR-002 (O8), so the dark-finish (emissivity 0.9) results are the design values; the bare
 mill-finish results are kept for comparison. First-principles estimates for a paper
-proof of concept; not a substitute for tests.
+proof of concept; not a substitute for tests. Masses and the bail thermal break follow the
+constructable design of TCT-DDR-003 (lug angles, bolts and washers, sealed radial screws, G 1/2 port).
+`budget_usd` is a value-engineering target, not a limit (STANDARDS section 18).
 """
 import csv
 import math
@@ -15,7 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "cad" / "src"))
-from model import PARAMS as P, build_parts, derived  # noqa: E402
+from model import PARAMS as P, build_components, build_parts, derived  # noqa: E402
 
 D = derived(P)
 SIG = 5.670e-8           # Stefan-Boltzmann constant, W/(m2 K4)
@@ -90,22 +92,30 @@ tag("A2", f"Inner space {D['in_w']:.2f} x {D['in_h']:.2f} x {D['in_l']:.1f} mm =
 tag("A3", f"Bail finger gap with the bail swung out {D['finger_gap']:.0f} mm; frame {D['frame_l']:.1f} x {D['frame_w']:.1f} mm")
 
 parts = build_parts(P)
+COMP = build_components(P)
 vol = {k: v.volume / 1e3 for k, v in parts.items()}      # cm3
-al_parts = ["shell", "cap_handle_end", "cap_key_end", "handle", "key"]
-m_al = sum(vol[k] for k in al_parts) * RHO_AL / 1e6        # kg
-fixed = {                                                   # kg, items not modeled at full detail
-    "silicone grip (1.2 kg/L)": vol["grip"] * 1.2 / 1e3,
-    "FKM O-rings (1.9 kg/L)": vol["orings"] * 1.9 / 1e3,
-    "12 M5 x 12 A2 screws": 12 * 0.0025,
-    "G 3/4 plug and seal": 0.030,
-    "label, window, vial": 0.015,
-    "phenolic thermal-break washers": vol["thermal_break"] * 1.4 / 1e3,
-    "epoxy and sealant": 0.010,
+cvol = {k: c.shape.volume / 1e3 for k, c in COMP.items()}  # cm3, per component
+al_parts = ["tube", "fins_bot", "fins_top", "flange_key", "spacer_key", "plug_key", "flange_handle",
+            "spacer_handle", "plug_handle", "key", "lugs", "arms", "rod", "guards"]
+m_al = sum(cvol[k] for k in al_parts) * RHO_AL / 1e6       # kg
+fixed = {                                                   # kg, catalogue masses for bought items
+    "silicone grip (1.2 kg/L)": cvol["grip"] * 1.2 / 1e3,
+    "FKM O-rings (1.9 kg/L)": (cvol["oring_key"] + cvol["oring_handle"]) * 1.9 / 1e3,
+    "12 M5 x 10 A2 button-head screws with bonded seals": 12 * (0.0022 + 0.0006),
+    "9 M4 A2 screws and bolts (stack, key, lugs)": 3 * 0.0013 + 2 * 0.0023 + 4 * 0.0027,
+    "2 pivot pins with nyloc nuts, 2 M6 x 12 rod-end screws": 2 * 0.005 + 2 * 0.004,
+    "G 1/2 anodised aluminium plug and bonded seal": 0.009,
+    "label and melt indicator tube with its PCM": 0.006,
+    "phenolic thermal-break and head washers": (cvol["thermal_break"] + cvol["head_washers"]) * 1.4 / 1e3,
+    "epoxy and sealant": 0.012,
     "matte black high-temperature paint and primer, about 50 um dry (DDR-002, O8)": 0.015,
 }
 m_shell = m_al + sum(fixed.values())
-tag("A4", "Aluminium parts from the model: " + ", ".join(f"{k} {vol[k]:.0f} cm3" for k in al_parts)
-    + f"; {m_al:.3f} kg")
+tag("A4", "Aluminium parts from the model: shell and fins {:.0f} cm3, cap stacks {:.0f} cm3, bail and key {:.0f} cm3, "
+          "guards {:.1f} cm3; {:.3f} kg".format(
+              cvol["tube"] + cvol["fins_bot"] + cvol["fins_top"],
+              sum(cvol[k] for k in ("flange_key", "spacer_key", "plug_key", "flange_handle", "spacer_handle", "plug_handle")),
+              sum(cvol[k] for k in ("key", "lugs", "arms", "rod")), cvol["guards"], m_al))
 tag("A5", f"Other cartridge parts {sum(fixed.values()):.3f} kg; empty cartridge {m_shell:.2f} kg "
           f"(TRL 2 estimate about 1.5 kg)")
 
@@ -332,15 +342,23 @@ tag("E4", f"H70 energy flow on the pad: input {E_pad / 0.8:.0f} Wh, stored 25 to
 
 # ---------------------------------------------------------------- F. handle temperature
 print("\nF. Handle temperature (R14)")
-A_lug = P["lug_w"] * P["lug_h"] / 1e6
-G_brk = 2 * 0.25 * A_lug / (P["break_t"] / 1000)
-A_handle = 0.0086                                      # exposed rod, arms and lugs, m2 (from model dimensions)
+# Constructable design (TCT-DDR-003, P5): each lug angle stands on two phenolic washers (OD 9, ID 4.5,
+# 3 mm) and its two M4 bolts carry a 3 mm phenolic washer under the head, so the steel bolt (at
+# cartridge temperature) touches the angle only through phenolic; the bolt passes the angle in a
+# 6.5 mm hole with an air gap.
+wo, wi = P["break_washer"]
+ho, hi, ht = P["head_washer"]
+A_brk = 4 * math.pi / 4 * (wo ** 2 - wi ** 2) / 1e6
+A_head = 4 * math.pi / 4 * (ho ** 2 - hi ** 2) / 1e6
+G_brk = 0.25 * A_brk / (P["break_t"] / 1000) + 0.25 * A_head / (ht / 1000)
+A_handle = (COMP["lugs"].shape.area + COMP["arms"].shape.area + COMP["rod"].shape.area) / 1e6 \
+    - math.pi * P["rod_d"] / 1000 * P["grip_l"] / 1000   # exposed angles, arms and rod, m2 (from the model)
 G_air = 8.0 * A_handle
-C_handle = vol["handle"] * RHO_AL / 1e6 * CP_AL
+C_handle = (cvol["lugs"] + cvol["arms"] + cvol["rod"]) * RHO_AL / 1e6 * CP_AL
 for T_c in (71.0, 80.0):
     T_h = (G_brk * T_c + G_air * 25) / (G_brk + G_air)
     tag("F1", f"Cartridge at {T_c:.0f} °C: bail on the thermal break settles at {T_h:.1f} °C "
-              f"(break {G_brk:.3f} W/K, air {G_air:.3f} W/K)")
+              f"(break {G_brk:.3f} W/K through washers and bolt-head washers, air {G_air:.3f} W/K over {A_handle:.4f} m2)")
 tau = C_handle / (G_brk + G_air)
 T_inf = (G_brk * 80 + G_air * 25) / (G_brk + G_air)
 t55 = tau * math.log((85 - T_inf) / (55 - T_inf)) / 60
@@ -362,16 +380,17 @@ for a_ in ky:
 tag("G1", f"Key positions {', '.join(f'{k} {v:+.0f} mm' for k, v in ky.items())}; each frame accepts only its own grade: {ok}")
 
 # ---------------------------------------------------------------- H. cost
-print("\nH. Cost (R16) and budget")
+print("\nH. Cost (R16) against the value-engineering targets")
 rows = list(csv.DictReader((ROOT / "bom" / "bom.csv").open()))
 cost = {r["item"]: int(r["qty"]) * float(r["unit_cost_usd"]) for r in rows}
 frame_cost = sum(v for k, v in cost.items() if k.startswith("7 "))
 cart_cost = sum(cost.values()) - frame_cost
 import yaml  # noqa: E402
 budget = float(yaml.safe_load((ROOT / "project.yaml").read_text())["budget_usd"])
-tag("H1", f"Cartridge ${cart_cost:.2f} (target $50), frame ${frame_cost:.2f} (target $20); "
-          f"one C5 cartridge and one frame ${cart_cost + frame_cost:.2f} against the ${budget:.0f} budget "
-          f"({cart_cost + frame_cost - budget:+.2f})")
+over = cart_cost + frame_cost - budget
+tag("H1", f"Cartridge ${cart_cost:.2f} (R16 target $50, ${cart_cost - 50:.2f} over), frame ${frame_cost:.2f} (target $20); "
+          f"one C5 cartridge and one frame ${cart_cost + frame_cost:.2f} against the ${budget:.0f} value-engineering target "
+          f"(${abs(over):.2f} {'over' if over > 0 else 'under'})")
 pcm_price = 10.0
 pcm_row = sum(v for k, v in cost.items() if k.startswith("2 "))
 set3 = 3 * (cart_cost - pcm_row) + pcm_price * sum(res[n]["m"] for n in res if n in GRADES) + frame_cost

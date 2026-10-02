@@ -1,4 +1,4 @@
-"""ThermaCart general arrangement sheet TCT-DWG-001, Rev P2 (TRL 3).
+"""ThermaCart general arrangement sheet TCT-DWG-001, Rev P4 (TRL 3, constructable design TCT-DDR-003).
 
 Run from the repo root:  python cad/src/sheets.py
 Writes cad/drawings/TCT-DWG-001.svg, .pdf and .png from the parametric model in
@@ -15,6 +15,7 @@ from drawing import Sheet, _viewbox, _t, M, TB_Y, INK, MUTED  # noqa: E402
 from model import PARAMS as P, assembly, derived  # noqa: E402
 
 DATE = "2026-09-25"
+DATE_P4 = "2026-10-01"
 
 
 def safe_project_views(part, workdir, line_weight=0.35):
@@ -94,12 +95,13 @@ def main():
     asm = assembly()
     views = safe_project_views(asm, work)
     bb = asm.bounding_box()
-    s = Sheet(project="ThermaCart", title="General arrangement, TC-L in frame", dwg_no="TCT-DWG-001", rev="P3",
-              author="Amish Chadha", date=DATE, scale=0.4, theme="technical",
+    s = Sheet(project="ThermaCart", title="General arrangement, TC-L in frame", dwg_no="TCT-DWG-001", rev="P4",
+              author="Amish Chadha", date=DATE_P4, scale=0.4, theme="technical",
               material="6063-T52 tube, 6061 caps, 5052 frame; FKM seals; matte black finish. PRELIMINARY, NOT FOR FABRICATION",
               revisions=[("P1", "Preliminary GA for TRL 3 (from cad/src/model.py)", DATE, "AC"),
                          ("P2", "Dark finish and H70 handling rule added (TCT-DDR-002)", DATE, "AC"),
-                         ("P3", "Layout and labels tidied", DATE, "AC")])
+                         ("P3", "Layout and labels tidied", DATE, "AC"),
+                         ("P4", "Constructable design (TCT-DDR-003)", DATE_P4, "AC")])
     s.add_ortho(views)
     k = s.scale
     c = ortho_cells(s, views)
@@ -137,8 +139,8 @@ def main():
     L += dim_v(xl, Yt(P["tube_w"] / 2), Yt(-P["tube_w"] / 2), f"{P['tube_w']:.1f}")
     xl2 = xl - 10
     L += dim_v(xl2, Yt(D["frame_w"] / 2), Yt(-D["frame_w"] / 2), f"{D['frame_w']:.1f} frame")
-    L += leader(Xt(D["xt1"] - 32), Yt(30), Xt(bb.max.X) + 6, Yt(10), "SIGHT WINDOW")
-    L += leader(Xt(D["xe1"] + 4), Yt(P["port_y"]), Xt(bb.max.X) + 6, Yt(P["port_y"]), "G 3/4 FILL PORT")
+    L += leader(Xt(D["xt1"] - 32), Yt(30), Xt(bb.max.X) + 6, Yt(10), "MELT INDICATOR")
+    L += leader(Xt(D["xe1"] + 4), Yt(P["port_y"]), Xt(bb.max.X) + 6, Yt(P["port_y"]), "G 1/2 FILL PORT")
     L += leader(Xt(0), Yt(-P["tube_w"] / 2 + 10), Xt(bb.max.X) + 6, Yt(-40), "FINS, 9 TOP AND 9 BOTTOM")
 
     # right view (from +X): looking along -X, +Y to the right
@@ -154,11 +156,11 @@ def main():
         f"Shell 6 x 2 x 1/8 in tube, {P['tube_l']:.0f} long; inner {D['in_w']:.1f} x {D['in_h']:.1f} x {D['in_l']:.1f}",
         f"Inner volume {D['v_inner_l']:.3f} L; filled to {P['fill_fraction'] * 100:.0f} % as liquid at the grade limit",
         f"Fins 9 top, 9 bottom, {P['fin_h']:.2f} x {P['fin_t']:.2f} on {D['fin_pitch']:.1f} pitch",
-        f"Caps: {P['flange_t']:.3f} flange, {P['spacer_t']:.0f} gland spacer, {P['plug_t']:.3f} plug; FKM 3 mm cord",
-        "Six radial M5 screws per cap; G 3/4 fill port in the handle-end cap",
-        f"Folding bail on {P['break_t']:.0f} phenolic thermal break; finger gap {D['finger_gap']:.0f} when raised",
-        "Key tab 30 wide, 16 high; centre Y: " + ", ".join(f"{g} {v:+.0f}" for g, v in ky.items()),
-        f"Frame 1.5 sheet, {D['frame_l']:.0f} x {D['frame_w']:.0f}; end stop slot = key + {P['slot_clear']:.0f} each side",
+        f"Caps: {P['flange_t']:.3f} flange, {P['spacer_t']:.0f} spacer, {P['plug_t']:.3f} plug, bonded; FKM {P['oring_cord']:g} cord",
+        "Six radial M5 button-head screws per cap on bonded seals; G 1/2 fill port",
+        f"Bail: 20 x 20 x 3 angles on {P['break_t']:.0f} phenolic washers; finger gap {D['finger_gap']:.0f} raised",
+        "Key tab 30 wide, 16 high, 2 x M4; centre Y: " + ", ".join(f"{g} {v:+.0f}" for g, v in ky.items()),
+        f"Frame 1.5 sheet, {D['frame_l']:.0f} x {D['frame_w']:.0f}; key passes the stop slot (key + {P['slot_clear']:.0f})",
         "Finish: shell, fins and caps etch-primed, matte black high-temp paint (e about 0.9)",
         "H70 label rule: from an oven use oven gloves or wait 12 min; pad charging preferred",
         "Sized in TCT-CAL-001; shown: C5 key and C5 frame",

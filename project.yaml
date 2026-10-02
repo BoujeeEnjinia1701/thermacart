@@ -5,6 +5,7 @@ repo: BoujeeEnjinia1701/thermacart         # GitHub repository, shown on every d
 area: Shared Components
 trl: 3                   # Technology Readiness Level, see .kit/STANDARDS.md section 9
 trl_target: 3
+design_state: constructable   # STANDARDS section 18
 trl_evidence:
   - docs/01-problem.md
   - docs/02-concept.md
@@ -19,6 +20,9 @@ trl_evidence:
   - cad/drawings/TCT-DWG-001.svg
   - cad/drawings/TCT-DWG-001.pdf
   - bom/bom.csv
+  - docs/decisions/0003-design-for-construction.md
+  - docs/05-build-plan.md
+  - docs/06-design-decisions.md
 shortlisted: false
 pitch: >-
   A sealed, swappable phase-change thermal cartridge in a few standard temperature ranges (cold chain, comfort and hot holding) that stores heat or cold and drops into coolers, cabinets and heat exchangers.

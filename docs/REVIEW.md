@@ -226,3 +226,58 @@ This is an appearance model only: no tolerances, no fabrication detail, concept,
 - Kit 1.5.0 synced: STANDARDS v1.5 (sections 12 to 15: product renders, storefront images and image quality, public release, authorship and signing), `.kit/cards.py`, `.kit/image_qc.py`, `.kit/release_gate.py`, issue templates, and the `/render-product` and `/release` commands. `CLAUDE.md` now matches `.kit/CLAUDE.md`.
 - Every `media/render-*.png` recaptioned from its original render with the new layout: the title, concept label and repository sit in a band above the render and the view note in a band below it, each line wrapped to the image width, so no text overlaps other text or the render or runs off the image. `media/card.png` and `media/social-preview.png` regenerated with the same rules.
 - `python .kit/image_qc.py` and `python .kit/release_gate.py` pass. trl stays 3.
+
+## Session 2026-10-01: constructable design and illustrated build plan (/build-plan, kit 1.7.0)
+
+Authority: the `/build-plan` command, Amish's instruction of 2026-09-30 ("If you are realising that the design cannot be built as per concept - fix the design assumptions to match and be physically feasible as you draw the illustrations"), his 2026-09-30 rule that outstanding decisions go in a separate register, and his 2026-10-01 note that budgets are value-engineering targets.
+
+### What was done
+
+- Kit 1.7.0 installed (`.kit/`, `.claude/commands/`); `CLAUDE.md` replaced with `.kit/CLAUDE.md`.
+- `cad/src/model.py`: rebuilt as separate components with BOM lines (`build_components()`), the constructable design P1 to P11 below, and 68 build123d constructability checks (`python cad/src/model.py --check`: overlaps, contacts and clearances for every pair of parts that meet, and the bail swung to 90 and 180 degrees). All 68 pass. `build_parts()` keeps the old grouped names for `sizing.py`, `concept_media.py` and `product_model.py`. STEP and STL re-exported.
+- `docs/decisions/0003-design-for-construction.md` (TCT-DDR-003 v0.1, Draft): every change with its reason; made under Amish's 2026-09-30 instruction to make the design physically buildable; open for his review.
+- `docs/04-calcs/sizing.py` and `01-sizing.md` (TCT-CAL-001 v0.3): masses from the new components, the bail thermal break with insulated bolts, cost and the value-engineering wording.
+- `bom/bom.csv` lines 1 and 3 to 8 rewritten for the parts the build needs; `bom/bom-notes.md` updated.
+- `cad/src/sheets.py`: general arrangement TCT-DWG-001 at Rev P4.
+- `cad/src/build_plan_media.py` (new): overview, 10 making sketches `cad/drawings/TCT-DWG-101` to `110`, a cap hole layout, 10 joint close-ups (section views label each part on its cut face) and 12 assembly steps, in `docs/05-build-plan/`. Every picture was looked at and fixed where labels landed on the wrong part or covered it.
+- `docs/05-build-plan.md` (TCT-BLD-001 v0.1) and `docs/06-design-decisions.md` (TCT-DEC-001 v0.1) written from the kit templates.
+- `cad/src/concept_media.py` re-run: `media/hero.png`, `exploded.png`, `cutaway.png`, `flow.png`, `concept-blueprint.*`, `model.glb` and `viewer.html` now show the constructable model.
+- TCT-PRB-001 v0.6, TCT-PRC-001 v0.5, TCT-REQ-001 v0.5: budget wording, numbers and component descriptions. `project.yaml`: `design_state: constructable`, TCT-DDR-003, BLD and DEC added to `trl_evidence`; `budget_usd` unchanged. `README.md`: links line, "Building the prototype" section with the overview picture, value-engineering wording.
+
+### Design changes made for construction (TCT-DDR-003)
+
+1. **P1 fill port:** the G 3/4 bore cut through the O-ring; now a G 1/2 anodised aluminium plug on a bonded seal, 56 mm toward the back, 3.5 mm inside the O-ring line.
+2. **P2 O-ring gland:** 94 % full; now 2.5 mm FKM cord in a 2.1 mm deep gland (78 % fill, 16 % squeeze), plates cut to the measured bore, corners rounded, 1 mm lead-in chamfer on the tube ends.
+3. **P3 radial screws:** on the wet side of the O-ring with no seal, countersunk in a 3.175 mm wall; now M5 x 10 button-head screws on FKM bonded seals into tapped plug edges.
+4. **P4 cap stack:** no fixing between the three plates; now bonded face to face and screwed into blind holes in the plug.
+5. **P5 bail:** the arms could not swing and the lugs sat over the seal with no fixing; now bolted 20 x 20 x 3 mm lug angles on phenolic washers, insulated bolts, 16 x 4 mm arms on 5 mm pins, rod screwed between the arms. Finger gap 41 mm; bail 39.1 °C (was 42.5 °C).
+6. **P6 key tab:** no fixing; now two M4 screws into the plug.
+7. **P7 frame stop:** stood 2 mm in front of the key, so no grade could seat; now the key passes through the slot and the frame floor is 294 mm (was 304 mm).
+8. **P8 frame corners:** walls and stop overlapped; now the walls' tabs fold round the stop and are riveted.
+9. **P9 melt indicator:** a 22 mm disc 2 mm thick; now a clear polycarbonate tube of the same paraffin between two fin-bar guards.
+10. **P10 fins:** epoxy fillet each side and a comb jig (no geometry change).
+11. **P11 tube corner radii** added to the model.
+
+### Key results
+
+- Envelope 323.4 x 152.4 x 63.5 mm (unchanged); inner volume 1.655 L (unchanged); empty 1.80 kg; filled 2.90 to 2.98 kg (R4 met, thin); PCM fraction 38.1 to 39.6 % (R5 met, thin).
+- Value-engineering target: USD 80 for one C5 cartridge and one frame. Estimated cost of the constructable design: USD 97 (USD 17 over the target). R16: $80 per cartridge, over its $50 value-engineering target by $30; frame $17, $3 under.
+- Requirement status: 1 not met (R10, cold-chain hold 2.4 h against 8 h), 1 over the value-engineering target (R16), 1 at risk (R12, pad charging), 3 not verifiable at TRL 3 (R6, R7, R17), 12 met.
+
+### Proposed, awaiting Amish
+
+All open decisions are in the design decisions register (`docs/06-design-decisions.md`): A1 how a wrong grade is shown to be rejected by the frame (touches the safety case), A2 W0 key fixing, A3 the R5 margin, O1 to O3 from TCT-DDR-001, and the appearance-model items 1 to 3 of 2026-09-26. Nine items are listed to confirm when parts are bought.
+
+### Stale media (made on Amish's Mac, not regenerated here)
+
+`media/render-*.png`, `media/card.png`, `media/social-preview.png` and the appearance model `cad/src/product_model.py` still show the concept bail and lugs, the round sight window, the G 3/4 plug and the concept frame stop. The design changed visibly; they need updating on the Mac. `media/render-hero.png`, which the README leads with, is not in this copy of the repo.
+
+### Safety concerns
+
+- Paraffin is melted for filling: water bath on a thermostat only, never a flame; C5 never above 45 °C (build plan S2, S3).
+- The thermal break works only if no lug bolt touches its angle; the build plan has a meter check.
+- The wrong-grade rejection (A1) relies on a 12 mm stand-off; a frozen W0 or hot H70 cartridge could still be left partly seated in a cold-chain host until A1 is decided.
+
+### Recommended next step
+
+Review TCT-DDR-003 and decide A1 in the register. TRL 4 (building and testing to TCT-BLD-001) remains on hold.

@@ -6,7 +6,7 @@ Takes the cartridge and frame parts from cad/src/model.py (PARAMS), adds a table
 .kit/concept.py. Parts are colored and numbered to match bom/bom.csv. Figures on the sheet
 and in the flow diagram come from docs/04-calcs/sizing.py (TCT-CAL-001). Not for fabrication.
 
-Shown: one TC-L cartridge in the cold-chain grade (C5) in its adapter frame, bail stowed, with
+Shown: the constructable design (TCT-DDR-003), one TC-L cartridge in the cold-chain grade (C5) in its adapter frame, bail stowed, with
 the matte black finish decided in TCT-DDR-002 (O8).
 Axes: X along the cartridge (handle at +X, keyed nose at -X), Y across, Z up. Units mm.
 The cartridge sits near the origin, so the kit's cutaway (cut at the mean Y of the parts)
@@ -34,9 +34,9 @@ parts = [
     Part("Fill port plug and seal", m["port"], "#D4A017", 4, (230, 0, 110)),
     Part("Handle (folding bail) and keyed nose", m["handle"] + m["grip"] + m["thermal_break"], "#B8BEC6", 5, (260, 0, 0)),
     Part("Keyed nose", m["key"], "#B8BEC6", None, (-200, 0, 0)),
-    Part("Grade label and melt indicator", m["indicator"], "#0F766E", 6, (0, 0, 210)),
+    Part("Grade label, melt indicator and guards", m["indicator"], "#0F766E", 6, (0, 0, 210)),
     Part("Cabinet adapter frame", m["frame"], "#D1D5DB", 7, (0, 0, -130)),
-    Part("Cap screws", m["screws"], "#1F2937", 8, (0, -230, 60)),
+    Part("Screws, bolts and seals", m["screws"], "#1F2937", 8, (0, -230, 60)),
 ]
 
 # Context for scale: a table top and a 25 L picnic cooler behind the cartridge
@@ -52,7 +52,7 @@ render_all(
                  "Usable: C5 65 Wh, C25 61 Wh, H70 73 Wh (CAL)",
                  "2.9 to 3.0 kg filled; PCM 38 to 40 % of mass",
                  "Keyed nose: frames accept only their grade",
-                 "Matte black finish; $76 per cartridge, $16 per frame"],
+                 "Matte black; $80 per cartridge, $17 per frame (est.)"],
     scale_figure=False, context=context,
     flow={"title": "energy per charge cycle, one TC-L H70 on a 60 W pad (TCT-CAL-001 estimates)",
           "unit": "Wh",

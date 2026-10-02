@@ -2,13 +2,13 @@
 
 ![TRL 3](https://img.shields.io/badge/TRL-3%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827) [![DOI](https://zenodo.org/badge/1388478020.svg)](https://zenodo.org/badge/latestdoi/1388478020) [![REUSE compliant](https://github.com/BoujeeEnjinia1701/thermacart/actions/workflows/reuse.yml/badge.svg)](https://github.com/BoujeeEnjinia1701/thermacart/actions/workflows/reuse.yml) [![Archived in Software Heritage](https://archive.softwareheritage.org/badge/origin/https://github.com/BoujeeEnjinia1701/thermacart/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/BoujeeEnjinia1701/thermacart)
 
-**Area:** Shared Components · **TRL:** 3 of 9 (proof of concept on paper) · **Prototype budget:** about $80 USD · **Difficulty:** 2 of 5
+**Area:** Shared Components · **TRL:** 3 of 9 (proof of concept on paper) · **Value-engineering target:** $80 USD · **Difficulty:** 2 of 5
 
 A sealed, swappable phase-change thermal cartridge in a few standard temperature ranges (cold chain, comfort and hot holding) that stores heat or cold and drops into coolers, cabinets and heat exchangers.
 
 ![ThermaCart: swappable phase-change thermal storage cartridge, product render](media/render-hero.png)
 
-[Exploded render](media/render-exploded.png) · [Detail render](media/render-detail.png) · [Interactive 3D model](media/viewer.html) · [Concept blueprint (PDF)](media/concept-blueprint.pdf) · [General arrangement (PDF)](cad/drawings/TCT-DWG-001.pdf) · [Calculations](docs/04-calcs/01-sizing.md) · [Review note](docs/REVIEW.md)
+[Exploded render](media/render-exploded.png) · [Detail render](media/render-detail.png) · [Interactive 3D model](media/viewer.html) · [Concept blueprint (PDF)](media/concept-blueprint.pdf) · [General arrangement (PDF)](cad/drawings/TCT-DWG-001.pdf) · [Prototype build plan](docs/05-build-plan.md) · [Design decisions](docs/06-design-decisions.md) · [Calculations](docs/04-calcs/01-sizing.md) · [Review note](docs/REVIEW.md)
 
 ## Concept rationale
 
@@ -57,7 +57,7 @@ Full problem statement: [docs/01-problem.md](docs/01-problem.md)
 
 ## Concept
 
-A sealed aluminium cartridge, 323 x 152 x 64 mm, holds 1.10 to 1.18 kg of PCM in one of three grades: C5 (5 °C, cold chain), C25 (25 °C, comfort) and H70 (70 °C, hot holding of cooked food). It fits a GN 1/3 slot, carries by a folding bail, shows its state through a sight window and locks into an adapter frame whose key accepts only its grade. The shell carries a matte black finish that roughly doubles its heat exchange with the air. The TRL 3 calculations ([TCT-CAL-001](docs/04-calcs/01-sizing.md)) give 65, 61 and 73 Wh of usable storage, 2.9 to 3.0 kg filled and about $76 in parts per cartridge. One H70 cartridge keeps a GN carrier at 63 °C or more for about 13 h. Two C5 cartridges store enough cold for a 25 L cooler for about 9.7 h at 32 °C, but on paper they cannot draw heat out of the cooler air fast enough to hold 2 to 8 °C for more than about 2.4 h; users are told to lay produce directly on the cartridges, which the calculation does not credit. The cold-chain hold time (R10) and the cost target (R16) are not met; see the [review note](docs/REVIEW.md). The design choices were decided by Amish on 2026-09-25 ([TCT-DDR-001](docs/decisions/0001-trl2-review-decisions.md), [TCT-DDR-002](docs/decisions/0002-recommendations-accepted.md)).
+A sealed aluminium cartridge, 323 x 152 x 64 mm, holds 1.10 to 1.18 kg of PCM in one of three grades: C5 (5 °C, cold chain), C25 (25 °C, comfort) and H70 (70 °C, hot holding of cooked food). It fits a GN 1/3 slot, carries by a folding bail, shows its state through a clear melt indicator and locks into an adapter frame whose key accepts only its grade. The shell carries a matte black finish that roughly doubles its heat exchange with the air. The TRL 3 calculations ([TCT-CAL-001](docs/04-calcs/01-sizing.md)) give 65, 61 and 73 Wh of usable storage, 2.9 to 3.0 kg filled and about $80 in parts per cartridge. One H70 cartridge keeps a GN carrier at 63 °C or more for about 13 h. Two C5 cartridges store enough cold for a 25 L cooler for about 9.7 h at 32 °C, but on paper they cannot draw heat out of the cooler air fast enough to hold 2 to 8 °C for more than about 2.4 h; users are told to lay produce directly on the cartridges, which the calculation does not credit. The cold-chain hold time (R10) is not met, and the cost (R16) is over its value-engineering target; see the [review note](docs/REVIEW.md). The design choices were decided by Amish on 2026-09-25 ([TCT-DDR-001](docs/decisions/0001-trl2-review-decisions.md), [TCT-DDR-002](docs/decisions/0002-recommendations-accepted.md)).
 
 Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [docs/03-requirements.md](docs/03-requirements.md)
 
@@ -68,13 +68,19 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 1. Cartridge shell: finned 6063 aluminium rectangular tube, matte black finish
 2. PCM fill: C5, C25 or H70 paraffin grade (water W0 as an option for produce only)
 3. End caps with FKM O-ring seals
-4. Fill port plug and seal
-5. Folding bail handle on a thermal break, and keyed nose
-6. Grade label and melt indicator (sight window)
+4. G 1/2 fill port plug and bonded seal
+5. Folding bail on bolted lug angles with a phenolic thermal break, and keyed nose
+6. Grade label and melt indicator (a clear tube of the same PCM)
 7. Cabinet adapter frame with keyed stop
-8. Cap screws and consumables
+8. Sealed cap screws, bolts and consumables
 
-The priced bill of materials is in [bom/bom.csv](bom/bom.csv): about $76 per cartridge and $16 per frame (indicative), $92 for the first C5 build against the $80 budget; supplier quotes come before any budget change. The parametric model is [cad/src/model.py](cad/src/model.py), with STEP and STL exports in `cad/step/` and `cad/stl/`.
+The priced bill of materials is in [bom/bom.csv](bom/bom.csv): about $80 per cartridge and $17 per frame (indicative). Value-engineering target: USD 80 for the first C5 cartridge and frame. Estimated cost of the constructable design: USD 97 (USD 17 over the target); supplier quotes wait with TRL 4. The parametric model is [cad/src/model.py](cad/src/model.py), with STEP and STL exports in `cad/step/` and `cad/stl/`.
+
+## Building the prototype
+
+The design is constructable: every part can be sawn, drilled, tapped, bent or bought, and every part is fixed to the next ([TCT-DDR-003](docs/decisions/0003-design-for-construction.md)). The [prototype build plan](docs/05-build-plan.md) (TCT-BLD-001, plan, not yet built) shows how to make each component and fit it to the next, in 10 making sketches, 10 joint close-ups and 12 assembly steps drawn from the model. The tube, fins and cap plates are cut from stock aluminium and bonded with epoxy, the bail is bolted to the cap through phenolic washers, and the frame is bent on a hand brake and riveted; nothing needs milling or welding. Decisions still open are in the [design decisions register](docs/06-design-decisions.md).
+
+![ThermaCart prototype, every component pulled apart and numbered in build order](docs/05-build-plan/overview.png)
 
 ## Safety
 
