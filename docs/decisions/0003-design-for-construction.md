@@ -3,9 +3,9 @@ doc_id: TCT-DDR-003
 title: ThermaCart design for construction
 project: ThermaCart
 doc_type: Design decision record
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,12 +13,16 @@ revisions:
   date: '2026-10-01'
   author: Amish Chadha
   change: Changes that make the concept physically buildable, with the reason for each; made under Amish's 2026-09-30 instruction and open for his review
+- version: "0.2"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "Table 3 decided by Amish on 2026-10-02 (A1 option (b), A2 and A3 as recommended); Tables 1 and 2 still open for review; record stays Draft"
 ---
 
 # 0003: Design for construction
 
 - **Date:** 2026-10-01
-- **Status:** made under Amish's 2026-09-30 instruction to make the design physically buildable; open for his review. Items that would change what the cartridge does, its pitch or its safety case are not made here: they are listed in Table 3 as "Proposed, awaiting Amish" and carried in the design decisions register (TCT-DEC-001).
+- **Status:** made under Amish's 2026-09-30 instruction to make the design physically buildable; open for his review. Items that would change what the cartridge does, its pitch or its safety case are not made here: they were listed in Table 3 as "Proposed, awaiting Amish", and Amish accepted the recommendations for all three on 2026-10-02: "i approve your recommendations for all 555 open decisions." For A1 the accepted recommendation is option (b), the low lip, which differs from the (a) first proposed here; it is to be designed and is not yet in the model. Recorded in the design decisions register (TCT-DEC-001, items 1 to 3). The record stays Draft.
 
 ## Context
 
@@ -55,13 +59,13 @@ The changes keep what ThermaCart does: the same stock tube, inner volume (1.655 
 | Drawing | TCT-DWG-001 Rev P4; making sketches TCT-DWG-101 to 110 added. | Follows the model. |
 | Documents | TCT-CAL-001 v0.3, TCT-REQ-001 v0.5, TCT-PRC-001 v0.5; BOM lines 1 and 3 to 8 rewritten. No requirement target changed. | Follows the model. |
 
-*Table 3. Proposed, awaiting Amish.*
+*Table 3. Proposed, then decided by Amish on 2026-10-02.*
 
 | # | Question | Options | Recommendation |
 | --- | --- | --- | --- |
-| A1 | How a wrong grade is shown to be rejected (R9). With P7, a wrong grade's key meets the stop and the cartridge stays 12 mm short, its handle end standing proud of the frame, but nothing stops it being left in the host like that. This touches the safety case: a frozen W0 or hot H70 cartridge in a cold-chain box. | (a) accept the 12 mm stand-off and check at TRL 4 that the host's lid or door will not close on it; (b) a low lip at the frame's open end that the bottom fins drop behind only when the key is through the slot (needs the stowed grip moved up, a change to the bail); (c) a sprung detent in the stop. | (a) for the prototype, with the check written into the TRL 4 plan; (b) if the check fails. |
-| A2 | The W0 option (key at 61 mm toward the front) does not fit the constructable cap and frame: its outer key screw would be 0.9 mm from the O-ring line, and its slot would cut through the frame's corner tab. | (a) when W0 is sized, fix its tab with screws 4 mm each side of its centre and shorten that frame's tab; (b) move the W0 key position, which changes the published key table. | (a); W0 is an option not yet sized, and the key table is part of the open standard. |
-| A3 | R5 now has 0.1 percentage point of margin (38.1 % against 38 %) on catalogue masses. | (a) accept and weigh the prototype at TRL 4; (b) look for mass now (a tubular bail rod, thinner plugs with M4 radial screws). | (a). |
+| A1 | How a wrong grade is shown to be rejected (R9). With P7, a wrong grade's key meets the stop and the cartridge stays 12 mm short, its handle end standing proud of the frame, but nothing stops it being left in the host like that. This touches the safety case: a frozen W0 or hot H70 cartridge in a cold-chain box. | (a) accept the 12 mm stand-off and check at TRL 4 that the host's lid or door will not close on it; (b) a low lip at the frame's open end that the bottom fins drop behind only when the key is through the slot (needs the stowed grip moved up, a change to the bail); (c) a sprung detent in the stop. | (a) for the prototype, with the check written into the TRL 4 plan; (b) if the check fails. Decided 2026-10-02: (b). Design the low lip on paper now, with the stowed grip moved up, so the frame rejects a wrong grade; fall back to (a) only if the TRL 4 check shows no target host's lid can close on a proud cartridge. |
+| A2 | The W0 option (key at 61 mm toward the front) does not fit the constructable cap and frame: its outer key screw would be 0.9 mm from the O-ring line, and its slot would cut through the frame's corner tab. | (a) when W0 is sized, fix its tab with screws 4 mm each side of its centre and shorten that frame's tab; (b) move the W0 key position, which changes the published key table. | (a); W0 is an option not yet sized, and the key table is part of the open standard. Accepted 2026-10-02: (a), when W0 is sized; the key table is unchanged. |
+| A3 | R5 now has 0.1 percentage point of margin (38.1 % against 38 %) on catalogue masses. | (a) accept and weigh the prototype at TRL 4; (b) look for mass now (a tubular bail rod, thinner plugs with M4 radial screws). | (a). Accepted 2026-10-02: (a); if the weighed prototype misses, the tubular bail rod first. |
 
 ## Consequences
 

@@ -3,9 +3,9 @@ doc_id: TCT-DDR-002
 title: ThermaCart recommendations accepted
 project: ThermaCart
 doc_type: Design decision record
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-09-25'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,6 +13,10 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Record the recommendations accepted by Amish on 2026-09-25, what changed in the repo, and the items still open
+- version: "0.2"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "O1 to O3 decided by Amish on 2026-10-02 (TCT-DEC-001, items 4 to 6)"
 ---
 
 # 0002: Recommendations accepted
@@ -65,13 +69,13 @@ The TRL 3 session recorded items D1 to D8 and T1 to T4 in TCT-DDR-001 as "adopte
 
 ## Items still open
 
-*Table 3. Items with no recommendation, still "Proposed, awaiting Amish".*
+*Table 3. Items with no recommendation at this record; decided by Amish on 2026-10-02 (TCT-DEC-001, items 4 to 6).*
 
 | # | Item |
 | --- | --- |
-| O1 | The named co-design partner and region for the first produce cooler host |
-| O2 | Whether ColdPod or ZeerBox should declare ThermaCart as a dependency |
-| O3 | C5 charging: freezer with a conditioning step, or a refrigerator (TCT-CAL-001 shows 31 to 51 h in a refrigerator, which favours the freezer, but no recommendation was made) |
+| O1 | The named co-design partner and region for the first produce cooler host (Decided by Amish, 2026-10-02 (TCT-DEC-001, item 4): a produce cooler user through a postharvest extension partner; first candidate to approach, the UC Davis Postharvest Technology Center. Nothing is agreed.) |
+| O2 | Whether ColdPod or ZeerBox should declare ThermaCart as a dependency (Decided by Amish, 2026-10-02 (TCT-DEC-001, item 5): neither declares ThermaCart as a dependency now.) |
+| O3 | C5 charging: freezer with a conditioning step, or a refrigerator (TCT-CAL-001 shows 31 to 51 h in a refrigerator, which favours the freezer, but no recommendation was made) (Decided by Amish, 2026-10-02 (TCT-DEC-001, item 6): domestic freezer followed by the conditioning step, with the conditioning time printed on the C5 label as a required step.) |
 
 ## Consequences
 

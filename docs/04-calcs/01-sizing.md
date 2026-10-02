@@ -3,9 +3,9 @@ doc_id: TCT-CAL-001
 title: ThermaCart sizing calculations
 project: ThermaCart
 doc_type: Calculation
-version: "0.3"
+version: "0.4"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -21,6 +21,10 @@ revisions:
   date: '2026-10-01'
   author: Amish Chadha
   change: Constructable design (TCT-DDR-003) applied to mass, bail thermal break and cost; budget treated as a value-engineering target, R16 reported against it
+- version: "0.4"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "O3 decision of 2026-10-02 recorded (C5 freezer charging with a required conditioning step); no figure changed"
 ---
 
 # ThermaCart sizing calculations
@@ -115,7 +119,7 @@ A quasi-steady Stefan model adds the resistance of the growing layer of changed 
 | H70 on a 60 W pad | 2.7 h if the heat reaches the PCM; up to 10.3 h if the melt must conduct upward from a 90 °C base | | At risk |
 
 - The dark finish (O8) is the design case: C5 in a freezer 4.2 h, C25 in a refrigerator 4.6 h and H70 in an oven 5.3 h all meet the 8 h target [E1, E2].
-- Charging C5 in a refrigerator, one option in the TRL 2 open questions, would take one to two days, so freezer charging with a conditioning step is the practical route (open item O3, no recommendation, still awaiting Amish).
+- Charging C5 in a refrigerator, one option in the TRL 2 open questions, would take one to two days, so freezer charging with a conditioning step is the practical route. Amish decided on 2026-10-02 (O3) to charge C5 in a domestic freezer followed by the conditioning step, with the conditioning time printed on the C5 label as a required step.
 - The TRL 2 figure of about 2.5 h on a 60 W pad assumed the heat is absorbed as fast as it is supplied. It needs 130 Wh [E3]; paraffin conducts poorly, and the pad must never push the base above the RT 70 HC limit of 90 °C, so the true time lies between 2.7 and 10.3 h and depends on convection in the melt. This is a question for a TRL 4 test.
 - **R12 target correction.** The TRL 2 target allowed an oven "at 100 °C or less", which is above the 90 °C maximum operating temperature of RT 70 HC. TCT-REQ-001 v0.3 and later say 85 °C, never above 90 °C.
 - The energy flow of one pad charge is 162 Wh in, 130 Wh stored between 25 and 80 °C, 88 Wh released above 63 °C and 42 Wh below it, with 32 Wh lost at the pad [E4] (Figure 2 of TCT-PRC-001).

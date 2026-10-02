@@ -3,9 +3,9 @@ doc_id: TCT-DDR-001
 title: ThermaCart TRL 2 review decisions
 project: ThermaCart
 doc_type: Design decision record
-version: "0.2"
+version: "0.3"
 status: Draft
-date: '2026-09-25'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -17,12 +17,16 @@ revisions:
   date: '2026-09-25'
   author: Amish Chadha
   change: Recommendations accepted by Amish (DDR-002)
+- version: "0.3"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "O1 to O3 decided by Amish on 2026-10-02 (TCT-DEC-001, items 4 to 6)"
 ---
 
 # 0001: TRL 2 review decisions
 
 - **Date:** 2026-09-25
-- **Status:** accepted. On 2026-09-25 Amish accepted all recommendations ("i accept all your recommendations, go with them across all repos"). Items D1 to D8, T1 to T4 and O4 to O9 are decided by Amish, going with the recommendation; items O1 to O3 had no recommendation and remain proposed, awaiting Amish. See TCT-DDR-002.
+- **Status:** accepted. On 2026-09-25 Amish accepted all recommendations ("i accept all your recommendations, go with them across all repos"). Items D1 to D8, T1 to T4 and O4 to O9 are decided by Amish, going with the recommendation; items O1 to O3 had no recommendation at this record and were decided by Amish on 2026-10-02 (TCT-DEC-001, items 4 to 6): "i approve your recommendations for all 555 open decisions." See TCT-DDR-002.
 
 ## Context
 
@@ -60,9 +64,9 @@ The options for each item are those listed in `docs/REVIEW.md` (session 2026-09-
 
 | # | Item | Status |
 | --- | --- | --- |
-| O1 | The named co-design partner and region for the first produce cooler host. No recommendation was made beyond the host type in D7 | Proposed, awaiting Amish |
-| O2 | Whether ColdPod or ZeerBox should declare ThermaCart as a dependency. No recommendation was made; neither repo is in this batch and neither was changed | Proposed, awaiting Amish |
-| O3 | C5 charging: freezer with a conditioning step, or a refrigerator at 0 to 2 °C. No recommendation was made at TRL 2; TCT-CAL-001 shows refrigerator charging takes 31 to 51 h | Proposed, awaiting Amish |
+| O1 | The named co-design partner and region for the first produce cooler host. No recommendation was made beyond the host type in D7 | Decided by Amish, 2026-10-02 (TCT-DEC-001, item 4): a produce cooler user through a postharvest extension partner; first candidate to approach, the UC Davis Postharvest Technology Center. Nothing is agreed. |
+| O2 | Whether ColdPod or ZeerBox should declare ThermaCart as a dependency. No recommendation was made; neither repo is in this batch and neither was changed | Decided by Amish, 2026-10-02 (TCT-DEC-001, item 5): neither declares ThermaCart as a dependency now. |
+| O3 | C5 charging: freezer with a conditioning step, or a refrigerator at 0 to 2 °C. No recommendation was made at TRL 2; TCT-CAL-001 shows refrigerator charging takes 31 to 51 h | Decided by Amish, 2026-10-02 (TCT-DEC-001, item 6): domestic freezer followed by the conditioning step, with the conditioning time printed on the C5 label as a required step. |
 | O4 | R5 (PCM fraction 38 to 40 % against 50 %): relax the target for the stock-tube build, or keep it for a later extrusion | Decided by Amish, 2026-09-25: go with recommendation (TCT-DDR-002) |
 | O5 | R10 (cold hold about 2 h against 8 h): dark finish, contact with the load, more cartridges, or a revised requirement | Decided by Amish, 2026-09-25: go with recommendation (TCT-DDR-002) |
 | O6 | R16 and budget: $71 per cartridge against $50, and $87 for the D6 build against $80 | Decided by Amish, 2026-09-25: go with recommendation (TCT-DDR-002) |

@@ -1,5 +1,54 @@
 # Review note: ThermaCart
 
+## Session 2026-10-02: open decisions decided by Amish
+
+Amish wrote on 2026-10-02: "i approve your recommendations for all 555 open decisions." Every open decision in this repo's register was decided as recommended and moved to "Decisions made" in `docs/06-design-decisions.md`, dated 2026-10-02.
+
+### Decisions recorded
+
+9 decisions recorded (register items 1 to 9). The register's "Open decisions" section now reads: "None. All open decisions were decided on 2026-10-02."
+
+### Documents changed
+
+- `docs/06-design-decisions.md` v0.2
+- `docs/decisions/0003-design-for-construction.md` v0.2
+- `docs/decisions/0001-trl2-review-decisions.md` v0.3
+- `docs/decisions/0002-recommendations-accepted.md` v0.2
+- `docs/03-requirements.md` v0.6
+- `docs/04-calcs/01-sizing.md` v0.4
+- `docs/02-concept.md` v0.6
+- `docs/01-problem.md` v0.7
+- `bom/bom-notes.md` (decided label, band and decal items noted; not a controlled document)
+
+PDFs re-rendered with `python3 .kit/render.py`. The CAD model, BOM quantities and prices, and pictures were not changed.
+
+### Follow-up actions to carry approved decisions into the design
+
+1. Decision 1 (model): Design the low lip at the frame's open end, which the bottom fins drop behind only when the key is through the slot, and move the stowed grip up to clear it, in `cad/src/model.py`; add checks that the right grade seats and a wrong grade is held out, with the bail stowed and raised.
+2. Decision 1 (drawings): Regenerate the frame and bail making sketches and TCT-DWG-001 with the lip and the moved grip.
+3. Decision 1 (build plan pictures and renders): Regenerate the frame and bail pictures of TCT-BLD-001 and change its R9 check ("the others stop 12 mm short") to the lip rejecting a wrong grade.
+4. Decision 1 (calculations): Update TCT-CAL-001, section G (grade keying), for the lip, and recheck the bail handle temperature and the GN 1/3 envelope with the grip moved up.
+5. Decision 1 (documents): When TRL 4 is opened, write the check that no target host's lid can close on a proud cartridge, which decides any fallback to option (a).
+6. Decision 2 (model): When W0 is sized, fix its key tab with screws 4 mm each side of its centre and shorten the W0 frame's corner tab; the published key table stays as it is.
+7. Decision 6 (BOM): Add the printed conditioning time to the C5 label in the label set (row 6) of `bom/bom.csv`.
+8. Decision 7 (BOM): Add the 18 mm grade band masking step and its paint to row 1 of `bom/bom.csv` and reprice if needed.
+9. Decision 7 (build plan pictures and renders): Show the grade band as a masked, painted 18 mm band in the build plan painting step and the renders.
+10. Decision 8 (BOM): Add the painted side marking "ThermaCart, TC-L C5" to the label set (row 6) of `bom/bom.csv`.
+11. Decision 9 (BOM): Add the "C5 ONLY" decal to the frame (row 7) of `bom/bom.csv`.
+12. Decision 9 (build plan pictures and renders): Remove the rubber feet from the appearance model and renders, keeping the frame decal.
+
+### Points found in the review
+
+- R9 is shown as 'Met by design: every pairing checked' in TCT-REQ-001, but TCT-DDR-003 A1 says a wrong-grade cartridge is not rejected, only left 12 mm proud; R9 should read 'at risk' until item 1 is decided.
+- Item 5: neither ColdPod (built-in PCM in a vacuum-panel case) nor ZeerBox (walk-in evaporative chamber) has a cartridge slot, so the question as framed has no natural host in either repo.
+- Value engineering compares like with like (one C5 cartridge and one frame against USD 80), but the cartridge alone is USD 80 against R16's USD 50, so most of the gap is the cartridge, not the frame.
+- REVIEW.md 2026-09-26 items 4 to 7 (sight window build-up, tube corners, pivot pins, cap screws) are not in the register; items 4 and 6 are superseded by TCT-DDR-003 (P9 and the new bail), and 5 is now in 'To confirm when parts are bought'; they can be closed.
+- R9 status was not changed to "at risk" (flag 1); its status cell now says that a wrong grade stands 12 mm proud until the low lip decided on 2026-10-02 is designed. Amish may want the status itself changed.
+- TCT-DDR-003 Tables 1 and 2 (the changes made for construction) were not an open decision in the register, so they remain open for Amish's review; only Table 3 was decided on 2026-10-02.
+- Item 1 was approved as option (b), the low lip, which differs from the register's earlier recommendation of option (a); the design change is a follow-up, not yet made.
+
+TRL 4 remains on hold by Amish's instruction.
+
 ## Session 2026-09-25: /populate to a strong TRL 2
 
 ### What was done

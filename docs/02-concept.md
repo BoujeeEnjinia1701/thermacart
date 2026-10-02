@@ -3,9 +3,9 @@ doc_id: TCT-PRC-001
 title: ThermaCart design precis
 project: ThermaCart
 doc_type: Design precis
-version: "0.5"
+version: "0.6"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -29,6 +29,10 @@ revisions:
   date: '2026-10-01'
   author: Amish Chadha
   change: Constructable design (TCT-DDR-003) and prototype build plan (TCT-BLD-001); budget treated as a value-engineering target
+- version: "0.6"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "Decisions of 2026-10-02: C5 conditioning step on the label, first candidate host partner, no ColdPod or ZeerBox dependency, low lip for wrong grades"
 ---
 
 # ThermaCart design precis
@@ -137,7 +141,7 @@ Each choice below was decided by Amish on 2026-09-25, going with the recommendat
 
 > **Safety:** Do not fill, refill or open a cartridge that is warm or under pressure. Fill only as described in the fill recipe, with 10 % ullage at the grade's fill temperature. A frozen cartridge holds a partial vacuum of about 0.7 bar; its broad faces pull in by about 0.8 mm, which is expected.
 
-> **Safety:** A C5 cartridge charged in a freezer is below 0 °C when it comes out. Condition it until the melt indicator shows the first liquid before using it next to anything that must not freeze. ThermaCart is not qualified for vaccines or medicines, and the W0 water grade must never be used with them.
+> **Safety:** A C5 cartridge charged in a freezer is below 0 °C when it comes out. Condition it until the melt indicator shows the first liquid before using it next to anything that must not freeze; the conditioning time is printed on the C5 label as a required step (decided by Amish, 2026-10-02). ThermaCart is not qualified for vaccines or medicines, and the W0 water grade must never be used with them.
 
 - Aluminium edges and fins are sharp after cutting: deburr all edges.
 - Use a high-temperature paint rated well above 90 °C for the dark finish, paint in a ventilated space, and keep paint off the fill port thread and seat, the O-ring glands, the bores and the indicator.
@@ -147,8 +151,9 @@ Each choice below was decided by Amish on 2026-09-25, going with the recommendat
 
 - R10: the dark finish and produce contact are decided; whether contact closes the gap to 8 h needs a measurement at TRL 4, which is on hold.
 - R16: $80 per cartridge, $30 over its $50 value-engineering target; supplier quotes wait with TRL 4. Savings worth trying are listed in the design decisions register (TCT-DEC-001).
-- Charging C5 in a refrigerator takes 31 to 51 h; is a freezer with a conditioning step acceptable (O3, no recommendation, awaiting Amish)?
+- C5 charging (O3, decided by Amish, 2026-10-02): a domestic freezer followed by the conditioning step, about 4.2 h against 31 to 51 h in a refrigerator, with the conditioning time printed on the C5 label as a required step.
 - Seal performance over cycles and in a drop (R6), cycle life (R7) and the pad charge time (R12) need tests, which belong to TRL 4 and are on hold.
-- Which named partner hosts the first produce cooler (O1), and does ThermaCart become a declared dependency of ColdPod or ZeerBox (O2)? Both have no recommendation and await Amish.
+- First host (O1, decided by Amish, 2026-10-02): a produce cooler user reached through a postharvest extension partner; the first candidate to approach is the UC Davis Postharvest Technology Center, asked to introduce a grower group or market cooler operator that already uses passive or ice-based cooling. Nothing is agreed. Neither ColdPod nor ZeerBox declares ThermaCart as a dependency now (O2).
+- Wrong grade (R9, decided by Amish, 2026-10-02): a low lip at the frame's open end, with the stowed grip moved up, so that the frame physically rejects a wrong grade; it is still to be designed and modelled.
 
 Prototype build plan: [TCT-BLD-001](05-build-plan.md). Design decisions register: [TCT-DEC-001](06-design-decisions.md). Concept media: [blueprint sheet](../media/concept-blueprint.pdf), [interactive 3D model](../media/viewer.html). General arrangement: [TCT-DWG-001](../cad/drawings/TCT-DWG-001.pdf).

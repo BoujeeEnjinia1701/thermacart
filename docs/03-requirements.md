@@ -3,9 +3,9 @@ doc_id: TCT-REQ-001
 title: ThermaCart requirements
 project: ThermaCart
 doc_type: Requirements
-version: "0.5"
+version: "0.6"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -29,6 +29,10 @@ revisions:
   date: '2026-10-01'
   author: Amish Chadha
   change: Status from TCT-CAL-001 v0.3 for the constructable design (TCT-DDR-003); R16 reported against the value-engineering target
+- version: "0.6"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "R9 status note: the low lip decided on 2026-10-02 (TCT-DDR-003 A1 (b)) is still to be designed"
 ---
 
 # ThermaCart requirements
@@ -47,7 +51,7 @@ Table 1. Requirements
 | R6 | Sealed for life | No leak through 1,000 thermal cycles and a 1 m drop onto concrete in any state | Seal design review at TRL 3; cycle and drop tests belong to TRL 4 | Not verifiable at TRL 3; an end-on drop of a molten cartridge could see a surge of up to 5 bar |
 | R7 | Long life | 1,000 cycles or more with less than 10 % loss of latent capacity | Literature and supplier data at TRL 3 | Not verifiable at TRL 3; plausible for paraffins |
 | R8 | No pressure hazard | Internal gauge pressure 0.5 bar or less at the highest charge temperature; ullage of at least 10 % of the inner volume at that temperature | Calculation | Met: 0.00 bar at the fill temperature, +0.29 bar at 20 K above the limit; wall stress 56 MPa under the cold vacuum |
-| R9 | Wrong grade cannot be fitted | Each grade has its own nose key; a frame for one grade rejects the others | Design review of key geometry | Met by design: every pairing checked |
+| R9 | Wrong grade cannot be fitted | Each grade has its own nose key; a frame for one grade rejects the others | Design review of key geometry | Met by design for the keys: every pairing checked. In the current model a wrong grade stands 12 mm proud; the low lip that makes the frame reject it (decided by Amish, 2026-10-02, TCT-DDR-003 A1 (b)) is still to be designed |
 | R10 | Cold-chain hold time | Two C5 cartridges keep a 25 L cooler (heat leak about 0.5 W/K, estimate) at 2 to 8 °C for 8 h or more at 32 °C ambient | Heat balance calculation | **Not met**: 2.4 h with the decided dark finish (1.9 h bare); the stored energy would last 9.7 h, but air-side heat transfer limits the hold. Produce laid directly on the cartridges (TCT-DDR-002, O5) is not credited and waits for a TRL 4 measurement, which is on hold |
 | R11 | Hot-holding time | One H70 cartridge keeps food in an insulated GN carrier (about 0.25 W/K, estimate) at 63 °C or more for 4 h or more at 25 °C ambient | Heat balance calculation | Met: 13.6 h with the dark finish (7.2 h bare) |
 | R12 | Recharge with common equipment | Full recharge in 8 h or less: C5 and C25 in a domestic freezer or refrigerator, H70 in an oven set to 85 °C (never above 90 °C) or on a 60 W heating pad | Calculation (Stefan problem plus fin convection) | **At risk**: with the dark finish, C5 freezer 4.2 h, C25 refrigerator 4.6 h, H70 oven 5.3 h; H70 pad 2.7 to 10.3 h |
