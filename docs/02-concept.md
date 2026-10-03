@@ -3,7 +3,7 @@ doc_id: TCT-PRC-001
 title: ThermaCart design precis
 project: ThermaCart
 doc_type: Design precis
-version: "0.6"
+version: "0.7"
 status: Draft
 date: '2026-10-02'
 author: Amish Chadha
@@ -33,13 +33,17 @@ revisions:
   date: '2026-10-02'
   author: Amish Chadha
   change: "Decisions of 2026-10-02: C5 conditioning step on the label, first candidate host partner, no ColdPod or ZeerBox dependency, low lip for wrong grades"
+- version: "0.7"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "Approved decisions carried into the design: frame lip and raised grip modelled; cost updated for the grade band, side marking and frame decal"
 ---
 
 # ThermaCart design precis
 
 ## Summary
 
-ThermaCart is a sealed aluminium cartridge, 323 x 152 x 64 mm, that holds 1.10 to 1.18 kg of phase-change material (PCM) in one of three standard grades: C5 (melts at 5 °C, cold chain), C25 (25 °C, comfort) and H70 (70 °C, hot holding). It fits a GN 1/3 gastronorm slot, carries by a folding bail, shows its state through a clear melt indicator and locks into an adapter frame whose key accepts only the right grade. The shell, fins and caps carry a matte black finish that improves heat exchange with the air. The TRL 3 calculations (TCT-CAL-001 v0.3) give 65, 61 and 73 Wh of usable storage per cartridge, 2.9 to 3.0 kg filled and about $80 in parts. One requirement is not met on paper: the cold-chain hold time (R10, 2.4 h instead of 8 h, limited by heat transfer from the cooler air); the cost (R16) is over its value-engineering target. The design is constructable: every part can be cut, drilled, bent or bought and is fixed to the next (TCT-DDR-003, 2026-10-01), and the prototype build plan TCT-BLD-001 shows how to make it. The design choices below were decided by Amish on 2026-09-25 (TCT-DDR-001 and TCT-DDR-002).
+ThermaCart is a sealed aluminium cartridge, 323 x 152 x 64 mm, that holds 1.10 to 1.18 kg of phase-change material (PCM) in one of three standard grades: C5 (melts at 5 °C, cold chain), C25 (25 °C, comfort) and H70 (70 °C, hot holding). It fits a GN 1/3 gastronorm slot, carries by a folding bail, shows its state through a clear melt indicator and locks into an adapter frame whose key accepts only the right grade. The shell, fins and caps carry a matte black finish that improves heat exchange with the air. The TRL 3 calculations (TCT-CAL-001 v0.5) give 65, 61 and 73 Wh of usable storage per cartridge, 2.9 to 3.0 kg filled and about $83 in parts. One requirement is not met on paper: the cold-chain hold time (R10, 2.4 h instead of 8 h, limited by heat transfer from the cooler air); the cost (R16) is over its value-engineering target. The design is constructable: every part can be cut, drilled, bent or bought and is fixed to the next (TCT-DDR-003, 2026-10-01), and the prototype build plan TCT-BLD-001 shows how to make it. The design choices below were decided by Amish on 2026-09-25 (TCT-DDR-001 and TCT-DDR-002).
 
 ![ThermaCart hero render](../media/hero.png)
 
@@ -79,7 +83,7 @@ Table 2. Main components. Numbers match the exploded view (Figure 3) and `bom/bo
 | 2 | PCM fill | 1.10 to 1.18 kg of the grade's PCM, filled as liquid to 90 % of the 1.655 L inner volume | See Table 1 and Safety |
 | 3 | End caps (2) | Stack of 3.175 mm flange, 3 mm gland spacer and 9.525 mm plug in 6061 plate, bonded face to face and screwed; spliced FKM 2.5 mm cord O-ring in the corner gland; six radial M5 button-head screws on bonded seals through the tube wall into the plug | Cut and filed, no milling; FKM (or NBR) resists paraffin, EPDM does not |
 | 4 | Fill port plug | G 1/2 anodised aluminium plug with a bonded FKM seal in the handle-end cap, clear of the O-ring and the bail | Fill, drain and recycling |
-| 5 | Handle and keyed nose | Folding bail (16 mm rod, silicone grip, two 16 x 4 mm arms on 5 mm pins) on two 20 x 20 x 3 mm lug angles bolted to the cap through 3 mm phenolic thermal-break washers, stowed against the end face; key tab screwed to the nose at the grade position | 41 mm finger gap when raised; key positions in Table 1 |
+| 5 | Handle and keyed nose | Folding bail (16 mm rod, silicone grip, two 16 x 4 mm arms on 5 mm pins) on two 20 x 20 x 3 mm lug angles bolted to the cap through 3 mm phenolic thermal-break washers, stowed against the end face; key tab screwed to the nose at the grade position | 39 mm finger gap when raised; stowed grip clear of the frame lip; key positions in Table 1 |
 | 6 | Grade label and melt indicator | Colour-coded polyester label; a clear polycarbonate tube holding the same PCM, bonded on the top between two guards; H70 label carries the oven handling rule | Paraffin is opaque white when solid and clear when liquid |
 | 7 | Cabinet adapter frame | Bent 1.5 mm 5052 aluminium sheet, 294 x 160 mm, with side walls riveted to a keyed end stop; the key passes through the stop's slot when seated | One per host slot; host designs copy its key slot |
 | 8 | Hardware | Twelve M5 button-head screws with bonded seals, nine M4 screws and bolts, two M6 rod screws (A2), epoxy rated 120 °C or more, thread sealant | Per cartridge |
@@ -111,8 +115,8 @@ Table 3. Key numbers
 | Cold hold, two C5 in a 25 L cooler at 32 °C | 2.4 h (1.9 h bare); stored energy alone would last 9.7 h; produce contact not credited | R10 **not met** |
 | Hot hold, one H70 in a GN carrier at 25 °C | 13.6 h at 63 °C or more (7.2 h bare) | R11 met |
 | Recharge | C5 in a freezer 4.2 h; C25 in a refrigerator 4.6 h; H70 in an 85 °C oven 5.3 h, on a 60 W pad 2.7 to 10.3 h | R12 at risk (pad) |
-| Bail temperature, H70 | 39.1 °C on its thermal break; 85 °C for about 10 min after an oven | R14 met with the label rule |
-| Parts cost | About $80 per cartridge, $17 per frame (indicative) | R16 over its value-engineering target by $30 per cartridge; one cartridge and one frame $97 against the $80 value-engineering target |
+| Bail temperature, H70 | 39.2 °C on its thermal break; 85 °C for about 10 min after an oven | R14 met with the label rule |
+| Parts cost | About $82.50 per cartridge, $17.50 per frame (indicative) | R16 over its value-engineering target by $32.50 per cartridge; one cartridge and one frame $100 against the $80 value-engineering target |
 
 ## Key design choices (decided by Amish, 2026-09-25)
 
@@ -150,10 +154,10 @@ Each choice below was decided by Amish on 2026-09-25, going with the recommendat
 ## Open questions after TRL 3
 
 - R10: the dark finish and produce contact are decided; whether contact closes the gap to 8 h needs a measurement at TRL 4, which is on hold.
-- R16: $80 per cartridge, $30 over its $50 value-engineering target; supplier quotes wait with TRL 4. Savings worth trying are listed in the design decisions register (TCT-DEC-001).
+- R16: $82.50 per cartridge, $32.50 over its $50 value-engineering target; supplier quotes wait with TRL 4. Savings worth trying are listed in the design decisions register (TCT-DEC-001).
 - C5 charging (O3, decided by Amish, 2026-10-02): a domestic freezer followed by the conditioning step, about 4.2 h against 31 to 51 h in a refrigerator, with the conditioning time printed on the C5 label as a required step.
 - Seal performance over cycles and in a drop (R6), cycle life (R7) and the pad charge time (R12) need tests, which belong to TRL 4 and are on hold.
 - First host (O1, decided by Amish, 2026-10-02): a produce cooler user reached through a postharvest extension partner; the first candidate to approach is the UC Davis Postharvest Technology Center, asked to introduce a grower group or market cooler operator that already uses passive or ice-based cooling. Nothing is agreed. Neither ColdPod nor ZeerBox declares ThermaCart as a dependency now (O2).
-- Wrong grade (R9, decided by Amish, 2026-10-02): a low lip at the frame's open end, with the stowed grip moved up, so that the frame physically rejects a wrong grade; it is still to be designed and modelled.
+- Wrong grade (R9, decided by Amish, 2026-10-02): a low lip, 4 mm high, at the frame's open end, with the stowed grip moved up 3.5 mm, so that the frame physically rejects a wrong grade: its key meets the stop 8 mm short and its fins rest on the lip. Designed and checked in the model (TCT-CAL-001, G2 and G3).
 
 Prototype build plan: [TCT-BLD-001](05-build-plan.md). Design decisions register: [TCT-DEC-001](06-design-decisions.md). Concept media: [blueprint sheet](../media/concept-blueprint.pdf), [interactive 3D model](../media/viewer.html). General arrangement: [TCT-DWG-001](../cad/drawings/TCT-DWG-001.pdf).

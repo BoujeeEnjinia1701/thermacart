@@ -1,4 +1,4 @@
-"""ThermaCart sizing calculations, TCT-CAL-001 v0.3 (TRL 3, constructable design, TCT-DDR-003).
+"""ThermaCart sizing calculations, TCT-CAL-001 v0.5 (TRL 3, constructable design, TCT-DDR-003).
 
 Run from the repo root:  python docs/04-calcs/sizing.py
 Prints every number quoted in docs/04-calcs/01-sizing.md, tagged [A1], [B2] and so on.
@@ -109,6 +109,7 @@ fixed = {                                                   # kg, catalogue mass
     "phenolic thermal-break and head washers": (cvol["thermal_break"] + cvol["head_washers"]) * 1.4 / 1e3,
     "epoxy and sealant": 0.012,
     "matte black high-temperature paint and primer, about 50 um dry (DDR-002, O8)": 0.015,
+    "grade band and side marking paint (TCT-DEC-001 items 7 and 8)": 0.002,
 }
 m_shell = m_al + sum(fixed.values())
 tag("A4", "Aluminium parts from the model: shell and fins {:.0f} cm3, cap stacks {:.0f} cm3, bail and key {:.0f} cm3, "
@@ -378,6 +379,15 @@ for a_ in ky:
         if fits != (a_ == s_):
             ok = False
 tag("G1", f"Key positions {', '.join(f'{k} {v:+.0f} mm' for k, v in ky.items())}; each frame accepts only its own grade: {ok}")
+# Frame lip (TCT-DEC-001 item 1, option (b)): a wrong grade's key meets the stop short of seated,
+# so its bottom fins cannot drop behind the lip and rest on top of it instead.
+tag("G2", f"Lip {P['lip_h']:.0f} mm high, {P['frame_t']} mm thick, inside face {D['seated_lip_gap']:.0f} mm beyond the seated "
+          f"bottom fins; a wrong grade's key meets the stop {D['short']:.0f} mm short of seated, so its fins overlap the lip by "
+          f"{D['lip_bearing']:.0f} mm ({D['lip_bearing'] - P['frame_t']:.1f} mm past its outside face) and rest on it, "
+          f"handle end {P['lip_h']:.0f} mm high")
+tag("G3", f"Stowed grip underside {D['grip_z'] - P['grip_od'] / 2 - D['lip_top']:.2f} mm above the lip top and "
+          f"{D['grip_z'] - P['grip_od'] / 2:.2f} mm above the frame floor's underside; model checks of the seated and "
+          f"wrong-grade cases, bail stowed and raised, pass (cad/src/model.py --check)")
 
 # ---------------------------------------------------------------- H. cost
 print("\nH. Cost (R16) against the value-engineering targets")

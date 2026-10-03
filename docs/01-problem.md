@@ -3,7 +3,7 @@ doc_id: TCT-PRB-001
 title: ThermaCart problem statement
 project: ThermaCart
 doc_type: Problem statement
-version: "0.7"
+version: "0.8"
 status: Draft
 date: '2026-10-02'
 author: Amish Chadha
@@ -37,6 +37,10 @@ revisions:
   date: '2026-10-02'
   author: Amish Chadha
   change: "First host partner route from Amish's 2026-10-02 decision (O1)"
+- version: "0.8"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "Estimated cost updated to USD 100 for the approved follow-ups"
 ---
 
 # ThermaCart problem statement
@@ -80,7 +84,7 @@ The gap is an open cartridge: a published envelope, a small set of temperature g
 
 ## Constraints
 
-- Garage-buildable prototype, using stock aluminium sections, hand tools, a drill press and a tap set. No custom extrusion, casting, milling or welding for the first build. Value-engineering target: USD 80 for one C5 cartridge and one adapter frame (TCT-DDR-001, D6), a hypothetical control target rather than a limit (Amish, 2026-10-01); the constructable design is estimated at USD 97. Supplier quotes wait with TRL 4 (TCT-DDR-002, O6).
+- Garage-buildable prototype, using stock aluminium sections, hand tools, a drill press and a tap set. No custom extrusion, casting, milling or welding for the first build. Value-engineering target: USD 80 for one C5 cartridge and one adapter frame (TCT-DDR-001, D6), a hypothetical control target rather than a limit (Amish, 2026-10-01); the constructable design is estimated at USD 100. Supplier quotes wait with TRL 4 (TCT-DDR-002, O6).
 - First host type: a produce cooler used by a trader or smallholder, reached through a local partner (TCT-DDR-001, D7). Decided by Amish on 2026-10-02 (O1): the partner is a postharvest extension partner, and the first candidate to approach is the UC Davis Postharvest Technology Center; nothing is agreed.
 - Each paraffin grade has a datasheet maximum operating temperature (C5 45 °C, C25 65 °C, H70 90 °C) that charging and storage must respect.
 - Sealed for life in normal use; refillable only by a builder with the fill recipe.

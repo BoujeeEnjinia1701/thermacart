@@ -3,7 +3,7 @@ doc_id: TCT-CAL-001
 title: ThermaCart sizing calculations
 project: ThermaCart
 doc_type: Calculation
-version: "0.4"
+version: "0.5"
 status: Draft
 date: '2026-10-02'
 author: Amish Chadha
@@ -25,11 +25,15 @@ revisions:
   date: '2026-10-02'
   author: Amish Chadha
   change: "O3 decision of 2026-10-02 recorded (C5 freezer charging with a required conditioning step); no figure changed"
+- version: "0.5"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "Approved decisions carried into the design: frame lip and raised grip (section G, envelope and handle temperature rechecked), grade band, side marking, conditioning time and frame decal priced (section H); a wrong grade stops 8 mm short, not 12 mm"
 ---
 
 # ThermaCart sizing calculations
 
-On paper the TC-L cartridge meets twelve of its eighteen requirements, has one at risk, misses one, is over its cost target on one and leaves three that only tests can settle. Version 0.3 follows the constructable design of TCT-DDR-003 (sealed radial screws, bolted lug angles on phenolic washers, a G 1/2 fill port, fixings for every part): the empty mass is unchanged at 1.80 kg, the bail runs cooler on its new thermal break, and the parts cost rises from $76 to $80 per cartridge. The budget in `project.yaml` is now treated as a value-engineering target, not a limit (Amish, 2026-10-01). This version applies the recommendations Amish accepted on 2026-09-25 (TCT-DDR-002): the shell carries a matte black finish (O8), so the dark-finish results are now the design values; the C25 band of R1 is 22 to 27 °C (O9); R5 is 38 % for the stock-tube build (O4); and R14 includes a labelled handling rule for H70 cartridges from an oven (O7). The miss is the cold-chain hold time (R10: 2.4 h against 8 h, because the cartridge cannot pull heat out of the cooler air fast enough, although it stores enough energy for 9.7 h) and, reported against the value-engineering targets rather than as a miss, the parts cost (R16: $80 per cartridge, $30 over its $50 target; one cartridge and one frame $97, $17 over the $80 value-engineering target). The one at risk is recharge on a 60 W pad (R12). With the verified Rubitherm datasheet values, the C5 grade now meets R3 (65 Wh), which the TRL 2 estimate did not; C25 meets it by a thin margin. The 2 mm wall evaluated under decision D5 is rejected: it adds only 3.5 % volume and its walls would yield under the vacuum that forms when a cartridge is frozen. Every number in this note is printed by `docs/04-calcs/sizing.py`; the tag in brackets, for example [C3], is the line of that script's output that carries it.
+On paper the TC-L cartridge meets twelve of its eighteen requirements, has one at risk, misses one, is over its cost target on one and leaves three that only tests can settle. Version 0.3 follows the constructable design of TCT-DDR-003 (sealed radial screws, bolted lug angles on phenolic washers, a G 1/2 fill port, fixings for every part): the empty mass is unchanged at 1.80 kg, the bail runs cooler on its new thermal break, and the parts cost rises from $76 to $80 per cartridge. Version 0.5 carries the decisions of 2026-10-02 into the design: a low lip at the frame's open end now holds out a wrong grade (section G), the stowed grip is 3.5 mm higher to suit, and the painted grade band, side marking, printed conditioning time and frame decal bring the cartridge to $82.50 and the frame to $17.50. The budget in `project.yaml` is now treated as a value-engineering target, not a limit (Amish, 2026-10-01). This version applies the recommendations Amish accepted on 2026-09-25 (TCT-DDR-002): the shell carries a matte black finish (O8), so the dark-finish results are now the design values; the C25 band of R1 is 22 to 27 °C (O9); R5 is 38 % for the stock-tube build (O4); and R14 includes a labelled handling rule for H70 cartridges from an oven (O7). The miss is the cold-chain hold time (R10: 2.4 h against 8 h, because the cartridge cannot pull heat out of the cooler air fast enough, although it stores enough energy for 9.7 h) and, reported against the value-engineering targets rather than as a miss, the parts cost (R16: $82.50 per cartridge, $32.50 over its $50 target; one cartridge and one frame $100, $20 over the $80 value-engineering target). The one at risk is recharge on a 60 W pad (R12). With the verified Rubitherm datasheet values, the C5 grade now meets R3 (65 Wh), which the TRL 2 estimate did not; C25 meets it by a thin margin. The 2 mm wall evaluated under decision D5 is rejected: it adds only 3.5 % volume and its walls would yield under the vacuum that forms when a cartridge is frozen. Every number in this note is printed by `docs/04-calcs/sizing.py`; the tag in brackets, for example [C3], is the line of that script's output that carries it.
 
 > **Safety:** These are first-principles estimates for a paper proof of concept. They do not show that a cartridge is leak-tight, drop-safe or fit for food contact, and they are not a substitute for tests. ThermaCart is not qualified for vaccines or medicines. See TCT-PRC-001, Safety.
 
@@ -56,7 +60,7 @@ The note checks every requirement in TCT-REQ-001 v0.5 against the design in TCT-
 
 ## A. Geometry and mass (R2, R4, R5)
 
-- **Envelope.** With the bail stowed the cartridge is 323.4 x 152.4 x 63.5 mm, inside the GN 1/3 slot (325 x 176 mm, 65 mm deep) with margins of 1.6, 23.6 and 1.5 mm [A1]. The TRL 2 fixed handle left only about 14 mm between grip and end cap, too little for fingers; the folding bail stows inside the envelope and gives a 41 mm finger gap when raised [A3]. The bail now pivots on two bolted lug angles (TCT-DDR-003, P5).
+- **Envelope.** With the bail stowed the cartridge is 323.4 x 152.4 x 63.5 mm, inside the GN 1/3 slot (325 x 176 mm, 65 mm deep) with margins of 1.6, 23.6 and 1.5 mm [A1]. The TRL 2 fixed handle left only about 14 mm between grip and end cap, too little for fingers; the folding bail stows inside the envelope and gives a 39 mm finger gap when raised [A3]. With the stowed grip raised 3.5 mm for the frame lip (TCT-DEC-001, item 1), the stowed envelope is unchanged and still fits the GN 1/3 slot [A1]. The bail now pivots on two bolted lug angles (TCT-DDR-003, P5).
 - **Inner volume.** 146.05 x 44.45 x 254.9 mm, or 1.655 L [A2], slightly more than the 1.62 L of TRL 2, because a thinner 3.175 mm (1/8 in) flange let the tube grow from 270 to 280 mm.
 - **Mass.** The model's aluminium parts come to 1.657 kg, and seals, screws, bolts, pins, the anodised aluminium fill plug, grip, label, indicator, adhesive and about 15 g of primer and paint add 0.140 kg, so the empty cartridge is 1.80 kg [A4, A5] against about 1.5 kg at TRL 2. The caps are the reason: a garage-built cap is a solid stack of flange, gland spacer and plug (about 100 cm³ each) rather than the milled, pocketed cap assumed at TRL 2.
 - **Filled.** C5 2.90 kg, C25 2.92 kg and H70 2.98 kg, with 1.104, 1.119 and 1.180 kg of PCM [A6]. R4 (3.0 kg) is met with a thin margin. The PCM fraction is 38.1 to 39.6 %, which meets the 38 % target set for the stock-tube build by TCT-DDR-002 (O4) with little margin; the 50 % target stays for a later extrusion.
@@ -126,7 +130,7 @@ A quasi-steady Stefan model adds the resistance of the growing layer of changed 
 
 ## F. Handle temperature (R14)
 
-- **Thermal break.** In the constructable design (TCT-DDR-003, P5) each lug angle stands on two 3 mm phenolic washers and each of its two M4 bolts has a 3 mm phenolic washer under its head; the bolt passes the angle with an air gap, so a steel bolt never carries heat straight into the bail. The eight washers conduct 0.032 W/K and the bail (angles, arms and the bare part of the rod, 0.0117 m² from the model) loses 0.094 W/K to the air, so a bail on a cartridge at 71 or 80 °C settles at 36.8 or 39.1 °C [F1], below the assumed 55 °C bare-metal threshold [F3]. Version 0.2 gave 39.6 and 42.5 °C for the concept bail.
+- **Thermal break.** In the constructable design (TCT-DDR-003, P5) each lug angle stands on two 3 mm phenolic washers and each of its two M4 bolts has a 3 mm phenolic washer under its head; the bolt passes the angle with an air gap, so a steel bolt never carries heat straight into the bail. The eight washers conduct 0.032 W/K and the bail (angles, arms and the bare part of the rod, 0.0117 m² from the model) loses 0.093 W/K to the air, so a bail on a cartridge at 71 or 80 °C settles at 36.9 or 39.2 °C [F1]; the 2 mm shorter arms of the raised grip (version 0.5) change this by 0.1 K, below the assumed 55 °C bare-metal threshold [F3]. Version 0.2 gave 39.6 and 42.5 °C for the concept bail.
 - **Straight from the oven** the bail is at oven temperature, 85 °C. With a 9 min time constant it falls below 55 °C after about 10 min [F2]; the label's 12 min rule keeps its margin. The silicone grip is also at 85 °C at first, above the assumed 70 °C threshold for rubber.
 - R14 is **met with the handling rule** decided in TCT-DDR-002 (O7): pad charging is preferred and keeps the bail near 39 °C, and the label tells users to take an H70 cartridge from an oven with oven gloves or to wait 12 min. Without the rule, a cartridge lifted straight out of an oven would not meet the burn threshold. The bail is bare aluminium on its thermal break and is not painted, so the dark finish does not change these figures. C5 and C25 never exceed 65 °C and meet R14.
 
@@ -134,12 +138,14 @@ A quasi-steady Stefan model adds the resistance of the growing layer of changed 
 
 Key tabs 30 mm wide sit at -43, 0, +43 and -61 mm (C5, C25, H70, W0), and each frame slot is 3 mm wider than its key on each side. Every pairing was checked: each frame accepts only its own grade [G1]. The W0 key overlaps the C5 slot but cannot pass it.
 
+- **Frame lip (TCT-DEC-001, item 1, option (b)).** A wrong grade's key meets the stop before the cartridge is seated. With the 10 mm key and the 2 mm gap between the seated nose flange and the stop, it stops 8 mm short of seated; earlier versions of this note and TCT-DDR-003 gave 12 mm, which added the gap instead of subtracting it. The frame now has a lip 4 mm high folded up at its open end, its inside face 3 mm beyond the ends of the seated bottom fins. A seated cartridge's fins drop behind it; a wrong grade's fins overlap it by 5 mm and rest on top of it, so that cartridge sits with its handle end 4 mm high and 8 mm proud, and cannot be pushed down to the floor [G2]. Three 14 mm notches in the lip let the bottom radial screw heads past it. The stowed grip was raised 3.5 mm (pivot 47.5 mm up, arms 36 mm between holes) and its underside is 1.85 mm above the lip top [G3]. The model checks the seated C5 and the C25 and H70 cartridges in a C5 frame, with the bail stowed and raised.
+
 ## H. Cost against the value-engineering targets (R16)
 
-`budget_usd` is a hypothetical value-engineering target, not a spending limit (Amish, 2026-10-01: "the budgets are a hypothethical control target to ensure we are thinking along a value engineering lens"). Value-engineering target: USD 80 for one C5 cartridge and one frame. Estimated cost of the constructable design: USD 97 (USD 17 over the target).
+`budget_usd` is a hypothetical value-engineering target, not a spending limit (Amish, 2026-10-01: "the budgets are a hypothethical control target to ensure we are thinking along a value engineering lens"). Value-engineering target: USD 80. Estimated cost of the constructable design: USD 100 (USD 20 over the target).
 
-- One cartridge costs $80.00, $30 over its $50 target, and one frame $17.00, $3 under its $20 target [H1]. The dark finish (O8) adds about $5 for primer and paint; the parts added for construction (TCT-DDR-003: bonded seals, bolts, phenolic washers, rivets) add $5, less $1 for the smaller fill plug. The TRL 2 estimate of $49 left out the fin bar and finish, priced the caps as simple plates and used a lower tube price; all figures remain indicative, not quoted.
-- One C5 cartridge and one frame cost $97.00, $17.00 over the $80 value-engineering target [H1]; supplier quotes (TCT-DDR-002, O6) wait with TRL 4. A set of one cartridge per grade and one frame would be about $258 [H2]. PCM at $20/kg instead of $10/kg would add $11 per cartridge [H3].
+- One cartridge costs $82.50, $32.50 over its $50 target, and one frame $17.50, $2.50 under its $20 target [H1]. The decisions of 2026-10-02 add $1.50 for the masked grade band (row 1), $1 for the painted side marking (row 6; the printed conditioning time costs nothing) and $0.50 for the frame's "C5 ONLY" decal (row 7). The dark finish (O8) adds about $5 for primer and paint; the parts added for construction (TCT-DDR-003: bonded seals, bolts, phenolic washers, rivets) add $5, less $1 for the smaller fill plug. The TRL 2 estimate of $49 left out the fin bar and finish, priced the caps as simple plates and used a lower tube price; all figures remain indicative, not quoted.
+- One C5 cartridge and one frame cost $100.00, $20.00 over the $80 value-engineering target [H1]; supplier quotes (TCT-DDR-002, O6) wait with TRL 4. A set of one cartridge per grade and one frame would be about $266 [H2]. PCM at $20/kg instead of $10/kg would add $11 per cartridge [H3].
 - The build uses plates cut and filed and bars bonded with epoxy, with no milling; the frame needs a hand brake, available at a makerspace.
 
 ## I. Results against every requirement
@@ -149,7 +155,7 @@ Key tabs 30 mm wide sit at -43, 0, +43 and -61 mm (C5, C25, H70, W0), and each f
 | ID | Requirement | Value | Target | Status |
 | --- | --- | --- | --- | --- |
 | R10 | Cold-chain hold time | 2.4 h with the dark finish (1.9 h bare) at 32 °C; energy alone 9.7 h; produce contact not credited [D2, D3] | 8 h at 2 to 8 °C | **Not met** |
-| R16 | Low cost, garage-buildable | $80 per cartridge, $17 per frame; no milling [H1] | $50 and $20 value-engineering targets | **Over the value-engineering target by $30** per cartridge; frame $3 under |
+| R16 | Low cost, garage-buildable | $82.50 per cartridge, $17.50 per frame; no milling [H1] | $50 and $20 value-engineering targets | **Over the value-engineering target by $32.50** per cartridge; frame $2.50 under |
 | R12 | Recharge with common equipment | Dark finish: C5 freezer 4.2 h, C25 refrigerator 4.6 h, H70 oven 5.3 h; H70 pad 2.7 to 10.3 h [E1 to E3] | 8 h or less | **At risk** (pad) |
 | R6 | Sealed for life | Seal design reviewed; drop surge up to 5.0 bar flagged [C7] | No leak over 1,000 cycles and a 1 m drop | Not verifiable at TRL 3 |
 | R7 | Long life | Paraffins plausible; supplier cycling data not yet checked | 1,000 cycles, under 10 % loss | Not verifiable at TRL 3 |
@@ -160,9 +166,9 @@ Key tabs 30 mm wide sit at -43, 0, +43 and -61 mm (C5, C25, H70, W0), and each f
 | R5 | Efficient use of mass | 38.1 to 39.6 % PCM [A6] | 38 % or more (stock tube); 50 % for a later extrusion | Met (thin) |
 | R8 | No pressure hazard | 0.00 bar at fill temperature; +0.29 bar 20 K over the limit; walls 56 MPa under vacuum [C1 to C3] | 0.5 bar or less, 10 % ullage | Met |
 | R11 | Hot-holding time | 13.6 h with the dark finish (7.2 h bare) [D6] | 4 h at 63 °C or more | Met |
-| R14 | Safe to handle when charged | Bail 39.1 °C on pad charge; 85 °C for about 10 min after an oven, covered by the 12 min label rule [F1, F2] | Below the 10 s burn threshold, with the H70 oven rule | Met with the handling rule |
+| R14 | Safe to handle when charged | Bail 39.2 °C on pad charge; 85 °C for about 10 min after an oven, covered by the 12 min label rule [F1, F2] | Below the 10 s burn threshold, with the H70 oven rule | Met with the handling rule |
 | R2 | Common envelope | 323.4 x 152.4 x 63.5 mm [A1] | GN 1/3, 65 mm | Met |
-| R9 | Wrong grade cannot fit | All pairings rejected [G1] | Keyed | Met by design |
+| R9 | Wrong grade cannot fit | All pairings rejected by the key; a wrong grade is held out on the frame lip, 4 mm high and 8 mm proud [G1 to G3] | Keyed | Met by design |
 | R13 | State visible | Clear melt indicator tube holding the same PCM (TCT-DDR-003, P9) | Readable at a glance | Met by design |
 | R15 | Compatible materials | Aluminium, FKM, epoxy rated 120 °C or more, paraffin only | No corrosion or swelling | Met by design (paraffins) |
 | R18 | Recoverable | G 1/2 port drains the melt; fill named on label | Drain and reuse | Met by design |

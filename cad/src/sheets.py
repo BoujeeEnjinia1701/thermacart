@@ -1,4 +1,5 @@
-"""ThermaCart general arrangement sheet TCT-DWG-001, Rev P4 (TRL 3, constructable design TCT-DDR-003).
+"""ThermaCart general arrangement sheet TCT-DWG-001, Rev P5 (TRL 3, constructable design TCT-DDR-003,
+frame lip and raised grip of TCT-DEC-001 item 1).
 
 Run from the repo root:  python cad/src/sheets.py
 Writes cad/drawings/TCT-DWG-001.svg, .pdf and .png from the parametric model in
@@ -16,6 +17,7 @@ from model import PARAMS as P, assembly, derived  # noqa: E402
 
 DATE = "2026-09-25"
 DATE_P4 = "2026-10-01"
+DATE_P5 = "2026-10-02"
 
 
 def safe_project_views(part, workdir, line_weight=0.35):
@@ -95,13 +97,14 @@ def main():
     asm = assembly()
     views = safe_project_views(asm, work)
     bb = asm.bounding_box()
-    s = Sheet(project="ThermaCart", title="General arrangement, TC-L in frame", dwg_no="TCT-DWG-001", rev="P4",
-              author="Amish Chadha", date=DATE_P4, scale=0.4, theme="technical",
+    s = Sheet(project="ThermaCart", title="General arrangement, TC-L in frame", dwg_no="TCT-DWG-001", rev="P5",
+              author="Amish Chadha", date=DATE_P5, scale=0.4, theme="technical",
               material="6063-T52 tube, 6061 caps, 5052 frame; FKM seals; matte black finish. PRELIMINARY, NOT FOR FABRICATION",
               revisions=[("P1", "Preliminary GA for TRL 3 (from cad/src/model.py)", DATE, "AC"),
                          ("P2", "Dark finish and H70 handling rule added (TCT-DDR-002)", DATE, "AC"),
                          ("P3", "Layout and labels tidied", DATE, "AC"),
-                         ("P4", "Constructable design (TCT-DDR-003)", DATE_P4, "AC")])
+                         ("P4", "Constructable design (TCT-DDR-003)", DATE_P4, "AC"),
+                         ("P5", "Frame lip and raised grip (TCT-DEC-001 item 1)", DATE_P5, "AC")])
     s.add_ortho(views)
     k = s.scale
     c = ortho_cells(s, views)
@@ -122,6 +125,7 @@ def main():
     L += leader(X(D["rod_x"]), Z(D["grip_z"]), X(bb.max.X) - 30, Z(-45), "FOLDING BAIL, STOWED")
     L += leader(X(D["x_min"] + 3), Z(D["z0"] + P["key_z"] + 8), X(bb.min.X) - 6, Z(D["z0"]) + 14, "GRADE KEY", "end")
     L += leader(X(D["fx0"] + 20), Z(0.7), X(D["fx0"] + 40), Z(-45), "ADAPTER FRAME, KEYED STOP")
+    L += leader(X(D["fx1"] - 0.7), Z(D["lip_top"] - 1), X(D["fx1"] - 75), Z(-45), "4 MM LIP", "end")
 
     # top view (from +Z): X to the right, Y up the sheet
     x, y, w, h = c["top"]
@@ -161,6 +165,7 @@ def main():
         f"Bail: 20 x 20 x 3 angles on {P['break_t']:.0f} phenolic washers; finger gap {D['finger_gap']:.0f} raised",
         "Key tab 30 wide, 16 high, 2 x M4; centre Y: " + ", ".join(f"{g} {v:+.0f}" for g, v in ky.items()),
         f"Frame 1.5 sheet, {D['frame_l']:.0f} x {D['frame_w']:.0f}; key passes the stop slot (key + {P['slot_clear']:.0f})",
+        f"Frame lip {P['lip_h']:.0f} high, {D['seated_lip_gap']:.0f} past the seated fins; a wrong grade stops {D['short']:.0f} short on it",
         "Finish: shell, fins and caps etch-primed, matte black high-temp paint (e about 0.9)",
         "H70 label rule: from an oven use oven gloves or wait 12 min; pad charging preferred",
         "Sized in TCT-CAL-001; shown: C5 key and C5 frame",

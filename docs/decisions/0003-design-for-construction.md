@@ -3,7 +3,7 @@ doc_id: TCT-DDR-003
 title: ThermaCart design for construction
 project: ThermaCart
 doc_type: Design decision record
-version: "0.2"
+version: "0.3"
 status: Draft
 date: '2026-10-02'
 author: Amish Chadha
@@ -17,12 +17,16 @@ revisions:
   date: '2026-10-02'
   author: Amish Chadha
   change: "Table 3 decided by Amish on 2026-10-02 (A1 option (b), A2 and A3 as recommended); Tables 1 and 2 still open for review; record stays Draft"
+- version: "0.3"
+  date: '2026-10-02'
+  author: Amish Chadha
+  change: "Tables 1 and 2 accepted by Amish on 2026-10-02; record stays Draft"
 ---
 
 # 0003: Design for construction
 
 - **Date:** 2026-10-01
-- **Status:** made under Amish's 2026-09-30 instruction to make the design physically buildable; open for his review. Items that would change what the cartridge does, its pitch or its safety case are not made here: they were listed in Table 3 as "Proposed, awaiting Amish", and Amish accepted the recommendations for all three on 2026-10-02: "i approve your recommendations for all 555 open decisions." For A1 the accepted recommendation is option (b), the low lip, which differs from the (a) first proposed here; it is to be designed and is not yet in the model. Recorded in the design decisions register (TCT-DEC-001, items 1 to 3). The record stays Draft.
+- **Status:** accepted. Amish, 2026-10-02: "APPROVED: Design-for-construction changes in 10 repos (CityTwin, CoolShade, PalletPilot, Heliolite, PotholeLog, EarthPress, ReadyKit, CellCheck, CargoMule and ThermaCart)". This covers the changes P1 to P11 in Table 1 and the knock-on changes in Table 2, made under Amish's 2026-09-30 instruction to make the design physically buildable, and is recorded in the design decisions register (TCT-DEC-001). Items that would change what the cartridge does, its pitch or its safety case are not made here: they were listed in Table 3 as "Proposed, awaiting Amish", and Amish accepted the recommendations for all three earlier the same day: "i approve your recommendations for all 555 open decisions." For A1 the accepted recommendation is option (b), the low lip, which differs from the (a) first proposed here; it is to be designed and is not yet in the model. Recorded in the design decisions register (TCT-DEC-001, items 1 to 3). The record stays Draft.
 
 ## Context
 

@@ -3,9 +3,9 @@ doc_id: TCT-BLD-001
 title: ThermaCart prototype build plan
 project: ThermaCart
 doc_type: Build plan
-version: "0.1"
+version: "0.3"
 status: Draft
-date: '2026-10-01'
+date: '2026-10-02'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,6 +13,14 @@ revisions:
     date: '2026-10-01'
     author: Amish Chadha
     change: First build plan, with pictures by component and step; design made constructable (TCT-DDR-003)
+  - version: "0.2"
+    date: '2026-10-02'
+    author: Amish Chadha
+    change: "Section 2: the changes recorded in TCT-DDR-003 accepted by Amish on 2026-10-02"
+  - version: "0.3"
+    date: '2026-10-02'
+    author: Amish Chadha
+    change: "Approved decisions of 2026-10-02 carried in: frame lip, raised grip, grade band, side marking, conditioning time on the label and frame decal; pictures regenerated"
 ---
 
 # ThermaCart prototype build plan
@@ -25,13 +33,13 @@ revisions:
 
 *Figure 1. Every component pulled apart and numbered in build order.*
 
-The prototype is one TC-L cartridge in the cold-chain grade (C5) and one adapter frame for it. The cartridge is a 280 mm length of 6 x 2 in aluminium tube with eighteen thin fins bonded to its top and bottom, painted matte black, closed at each end by a cap made of three bonded aluminium plates and an O-ring, and filled with 1.10 kg of paraffin that melts at 5 °C. A folding bail on the handle end carries it, a key tab on the other end codes its grade, and a small clear tube of the same paraffin on top shows whether it is charged. The frame is a bent aluminium tray whose end stop has a slot that only the C5 key passes. Figure 1 shows the twelve components in the order you make or fit them. Eight are made in a small workshop: the shell tube, the fins, the two cap stacks, the key tab, the bail (lug angles, arms and rod), the melt indicator and the frame. The rest are bought: the paraffin, O-ring cord, fill plug, grip, label, washers and fixings. The work is sawing, filing, drilling and tapping aluminium, bonding with epoxy, painting, bending sheet on a hand brake and riveting; nothing needs milling or welding. The parts cost about $97 for the cartridge and frame, from the bill of materials.
+The prototype is one TC-L cartridge in the cold-chain grade (C5) and one adapter frame for it. The cartridge is a 280 mm length of 6 x 2 in aluminium tube with eighteen thin fins bonded to its top and bottom, painted matte black, closed at each end by a cap made of three bonded aluminium plates and an O-ring, and filled with 1.10 kg of paraffin that melts at 5 °C. A folding bail on the handle end carries it, a key tab on the other end codes its grade, and a small clear tube of the same paraffin on top shows whether it is charged. The frame is a bent aluminium tray whose end stop has a slot that only the C5 key passes, with a low lip at its open end that holds out a cartridge of any other grade. Figure 1 shows the twelve components in the order you make or fit them. Eight are made in a small workshop: the shell tube, the fins, the two cap stacks, the key tab, the bail (lug angles, arms and rod), the melt indicator and the frame. The rest are bought: the paraffin, O-ring cord, fill plug, grip, label, washers and fixings. The work is sawing, filing, drilling and tapping aluminium, bonding with epoxy, painting, bending sheet on a hand brake and riveting; nothing needs milling or welding. The parts cost about $100 for the cartridge and frame, from the bill of materials.
 
 > **Safety:** Paraffin is combustible: melt it only in a water bath on a thermostatic heater, never over a flame or on a hot plate, and never above 45 °C for the C5 grade. Cut aluminium edges and fin ends are sharp: deburr everything and wear gloves when handling the tube and sheet. Epoxy, etch primer and paint give off fumes: work in a ventilated space with gloves and eye protection. The filled cartridge weighs about 2.9 kg.
 
 ## 2. What changed to make it buildable
 
-The concept showed what the cartridge does; some of its parts could not be made, fixed or sealed as drawn. Each change below keeps what the cartridge does, and all of them are recorded in decision record TCT-DDR-003, open for Amish's review.
+The concept showed what the cartridge does; some of its parts could not be made, fixed or sealed as drawn. Each change below keeps what the cartridge does, and all of them are recorded in decision record TCT-DDR-003, accepted by Amish on 2026-10-02.
 
 *Table 1. Changes from the concept.*
 
@@ -193,7 +201,7 @@ The back face sits flat on the key-end flange, its bottom 4 mm above the flange'
 
 1. Cut two 32 mm lengths and deburr them.
 2. Flat leg (the one that goes against the cap): two 6.5 mm holes, 13 mm from the outside face of the upright leg, 8 and 18 mm up from the bottom end.
-3. Upright leg: one 5.2 mm pivot hole, 12 mm out from the back of the flat leg and 24 mm up from the bottom end.
+3. Upright leg: one 5.2 mm pivot hole, 12 mm out from the back of the flat leg and 25.5 mm up from the bottom end.
 4. The two are mirror images: clamp them back to back and drill them together.
 
 **How it fits the parts next to it.**
@@ -216,8 +224,8 @@ Each angle stands 3 mm off the flange on two phenolic washers (9 mm across, 4.5 
 
 **How to make it.**
 
-1. Cut two 54 mm lengths and round both ends to an 8 mm radius.
-2. Drill two holes on the centre line, 8 mm from each end (38 mm apart): 5.2 mm at the top (the pivot) and 6.5 mm at the bottom (the rod end). Drill the two arms clamped together.
+1. Cut two 52 mm lengths and round both ends to an 8 mm radius.
+2. Drill two holes on the centre line, 8 mm from each end (36 mm apart): 5.2 mm at the top (the pivot) and 6.5 mm at the bottom (the rod end). Drill the two arms clamped together.
 
 **How it fits the parts next to it.**
 
@@ -225,9 +233,9 @@ Each angle stands 3 mm off the flange on two phenolic washers (9 mm across, 4.5 
 
 *Figure 16. The arm lies flat on the outside of the angle's upright leg and swings on the pin; the rod is screwed to the arm.*
 
-A 5 mm stainless pin passes through the angle and the arm, its head inside the angle and a nyloc nut outside the arm, snug enough that the arm still swings. The rod end butts on the arm's inside face and an M6 x 12 button-head screw through the arm holds it. Stowed, the arm hangs straight down; swung out level, the grip is 41 mm from the end face, room for fingers.
+A 5 mm stainless pin passes through the angle and the arm, its head inside the angle and a nyloc nut outside the arm, snug enough that the arm still swings. The rod end butts on the arm's inside face and an M6 x 12 button-head screw through the arm holds it. Stowed, the arm hangs straight down; swung out level, the grip is 39 mm from the end face, room for fingers.
 
-**Check before moving on.** Hole centres 38 mm apart, within 0.5 mm, on both arms.
+**Check before moving on.** Hole centres 36 mm apart, within 0.5 mm, on both arms.
 
 ### 3.8 Bail rod
 
@@ -243,7 +251,7 @@ A 5 mm stainless pin passes through the angle and the arm, its head inside the a
 2. With the bar upright in a V-block in the drill press, centre drill each end, drill 5 mm 14 mm deep and tap M6 12 mm deep.
 3. Break the edges by 0.5 mm. Slide the grip sleeve onto the middle with soapy water and let it dry. Leave the rod bare: the bail is not painted.
 
-**How it fits the parts next to it.** Between the arms' inside faces on two M6 x 12 button-head screws with medium threadlocker (Figure 16). Stowed, it hangs 8 mm above the tube's underside and 15 mm out from the end face; the grip clears the flange by 3 mm and the frame floor by 6 mm.
+**How it fits the parts next to it.** Between the arms' inside faces on two M6 x 12 button-head screws with medium threadlocker (Figure 16). Stowed, it hangs 11.5 mm above the tube's underside and 15 mm out from the end face; the grip clears the flange by 3 mm, and its underside is about 2 mm higher than the top of the frame's lip, so the grip never catches on it.
 
 **Check before moving on.** 80 mm long within 0.3 mm, so the arms are neither pulled in nor pushed out.
 
@@ -277,14 +285,16 @@ The indicator lies along the cartridge on the painted top, 30 mm toward the back
 
 *Figure 20. Adapter frame making sketch (TCT-DWG-110).*
 
-**What it is and what it is made from.** The tray that goes in the host's slot and accepts only C5 cartridges. 5052-H32 aluminium sheet 1.5 mm and four 3.2 mm aluminium blind rivets.
+**What it is and what it is made from.** The tray that goes in the host's slot and accepts only C5 cartridges. 5052-H32 aluminium sheet 1.5 mm, four 3.2 mm aluminium blind rivets and a printed "C5 ONLY" vinyl decal.
 
 **How to make it.**
 
-1. Mark one blank: the floor 294 x 160.4 mm in the middle; a 30 mm wall on each long edge, each with a 12 mm tab at the stop end; and the 40 mm stop on one short edge, 157.4 mm wide so it bends up between the walls.
+1. Mark one blank: the floor 283 x 160.4 mm in the middle, including a 4 mm strip for the lip at the open end; a 30 mm wall on each long edge, each with a 12 mm tab at the stop end; and the 40 mm stop on one short edge, 157.4 mm wide so it bends up between the walls.
 2. Before bending, cut the slot in the stop: 36 mm wide and 22 mm tall, centred 43 mm toward the front, from 7.35 to 29.35 mm above the floor's top face. File it smooth.
 3. Drill 3 mm relief holes where bend lines cross. Bend the stop up 90°, then the walls (inside radius 1.5 mm), then fold each tab round the outside of the stop.
 4. Drill 3.3 mm through each tab and the stop, 6 mm in from the wall, 8 and 22 mm above the floor. Fit the rivets from inside, heads inside the frame.
+5. Fold the 4 mm strip at the open end up 90° to make the lip. Cut three 14 mm notches in it for the screw heads under the cartridge: centred 41.75 mm and 8.25 mm toward the front of the centre line and 58.25 mm toward the back.
+6. Stick the "C5 ONLY" decal on the outside of the stop, just above the slot.
 
 **How it fits the parts next to it.**
 
@@ -296,9 +306,9 @@ The indicator lies along the cartridge on the painted top, 30 mm toward the back
 
 *Figure 22. Seated, the key passes through the slot with 3 mm all round and the nose flange stops 2 mm from the stop.*
 
-The cartridge stands on its bottom fins on the floor, 2.5 mm from each wall. A cartridge of another grade meets the stop with its key and stays 12 mm short of seated.
+The cartridge stands on its bottom fins on the floor, 2.5 mm from each wall, and the ends of its bottom fins sit 3 mm inside the lip. A cartridge of another grade meets the stop with its key 8 mm short of seated, so its bottom fins cannot drop behind the lip: they rest on top of it, and that cartridge sits with its handle end 4 mm high and plainly out of place.
 
-**Check before moving on.** Inside width 157.4 mm; the stop square to the floor; the rivet heads 1 mm or less proud inside.
+**Check before moving on.** Inside width 157.4 mm; the stop square to the floor; the rivet heads 1 mm or less proud inside; the lip 4 mm tall and square to the floor.
 
 ### 3.11 Bought components
 
@@ -308,9 +318,10 @@ Buy to specification, not brand. Line numbers are those of the bill of materials
 - **O-ring cord (line 3).** FKM (or NBR) cord 2.5 mm, about 0.8 m, and a splicing kit; not EPDM, which paraffin swells.
 - **Fill plug (line 4).** G 1/2 plug with collar and hex socket (DIN 908 class) in anodised aluminium, and a G 1/2 FKM bonded sealing washer; anti-seize for the thread.
 - **Grip, phenolic and pins (line 5).** Silicone sleeve 24 mm outside, 16 mm bore, 60 mm long; phenolic laminate sheet 3 mm for eight washers; two 5 mm stainless pins (or M5 shoulder bolts) with nyloc nuts.
-- **Label (line 6).** Colour-coded C5 polyester label with grade, fill, melt point and warnings, notched for the indicator.
+- **Label and marking (line 6).** Colour-coded C5 polyester label with grade, fill, melt point and warnings, and the charging instruction: freezer, then about 4.2 h of conditioning, as a required step; notched for the indicator. A cut vinyl stencil for the side marking "ThermaCart, TC-L C5" and white high-temperature paint.
+- **Frame decal (line 7).** A printed "C5 ONLY" vinyl decal for the stop.
 - **Fixings (line 8).** A2 stainless: twelve M5 x 10 button-head screws (ISO 7380) with twelve M5 FKM bonded sealing washers; three M4 x 12 countersunk screws; two M4 x 16 and four M4 x 20 socket cap screws; two M6 x 12 button-head screws. Structural epoxy rated to 120 °C or more; thread sealant; medium threadlocker.
-- **Finish (line 1).** Etch primer and matte black high-temperature paint rated well above 90 °C.
+- **Finish (line 1).** Etch primer and matte black high-temperature paint rated well above 90 °C; blue high-temperature paint and 18 mm masking tape for the grade band.
 - **Rivets (line 7).** Four 3.2 mm aluminium blind rivets for 3 mm grip.
 
 ## 4. Putting it together
@@ -323,11 +334,11 @@ In each picture the parts already fitted are grey and the part being fitted is i
 
 Stand the tube upside down on the bench with the comb across it. Lay an epoxy bead along each fin line, set the nine bottom fins in the comb, form the fillets and let the epoxy cure fully before turning the tube over.
 
-### Step 2: top fins onto the tube, then the finish
+### Step 2: top fins onto the tube, then the finish, grade band and marking
 
 ![Step 2](05-build-plan/step-02.png)
 
-Bond the nine top fins the same way, flush with the bottom fins at the key end. When cured, mask the bore and the end faces, prime and paint the shell and fins matte black, and cure the paint as its maker says, before any paraffin is near it.
+Bond the nine top fins the same way, flush with the bottom fins at the key end. When cured, mask the bore and the end faces, prime and paint the shell and fins matte black, and cure the paint as its maker says, before any paraffin is near it. Then mask an 18 mm band round the nose end, starting 22 mm from the key-end face, and paint it blue, the C5 grade colour. Last, paint the side marking "ThermaCart, TC-L C5" in white on the front face through the stencil.
 
 ### Step 3: key tab onto the key-end cap
 
@@ -387,7 +398,7 @@ Bond the indicator and the two guards to the painted top with the epoxy (section
 
 ![Step 12](05-build-plan/step-12.png)
 
-Lower the cartridge onto the frame floor about 15 mm back from the stop, then slide it forward until the key passes through the slot and the nose stops 2 mm from the stop.
+Hold the cartridge nose down with its handle end above the lip, slide it forward until the key passes through the slot, then lower the handle end so the bottom fins drop behind the lip. The nose stops 2 mm from the stop.
 
 ## 5. First checks
 
@@ -401,7 +412,7 @@ These are the checks a TRL 4 test report would record; this plan only lists them
 | Leak check, empty | R6 | Before filling, warm the sealed empty cartridge in a 45 °C water bath for 10 min with the port plugged | No bubbles at any cap, screw or plug |
 | Leak check, filled | R6 | Stand the filled cartridge on each end in turn for 1 h at 45 °C on absorbent paper | No paraffin on the paper |
 | Mass | R4, R5 | Weigh empty and filled | About 1.80 and 2.90 kg; 3.0 kg or less filled |
-| Keying | R9 | Try the C5 cartridge in the frame; try a 30 mm block taped at the C25 and H70 positions | C5 seats; the others stop 12 mm short |
+| Keying | R9 | Try the C5 cartridge in the frame; try a 30 mm block taped at the C25 and H70 positions | C5 seats behind the lip; the others meet the stop 8 mm short and rest on the lip, handle end 4 mm high |
 | Indicator | R13 | Freeze the cartridge, then let it warm | The indicator is white when frozen and clears as the paraffin melts |
 | Charge time | R12 | C5 from 8 °C in a domestic freezer at -18 °C | Fully frozen in 8 h or less (4.2 h estimated) |
 | Bail temperature | R14 | Only for an H70 build: thermocouple on the grip during pad charging | Below 55 °C (39 °C estimated) |

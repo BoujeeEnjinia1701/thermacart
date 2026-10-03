@@ -57,15 +57,20 @@ PARAMS = {
     #   phenolic thermal-break washers and are held by two M4 bolts each into the plug; a 16 x 4 mm
     #   arm pivots on a 5 mm stainless pin on the outside of each angle; a 16 mm rod with a silicone
     #   grip is screwed between the arms (DDR-003, P5). Shown stowed (hanging against the end face).
+    #   Pivot 47.5 mm up and arms 36 mm between holes (TCT-DEC-001 item 1, 2026-10-02): the stowed
+    #   grip is 3.5 mm higher than before, its underside 1.85 mm above the frame lip's top.
     "angle": (20.0, 3.0), "lug_len": 32.0, "lug_z0": 22.0, "lug_yout": 40.0, "break_t": 3.0,
     "break_washer": (9.0, 4.5), "lug_bolt_y": 27.0, "lug_bolt_z": (30.0, 40.0), "lug_bolt_hole": 6.5,
-    "head_washer": (9.0, 4.3, 3.0), "pivot_dx": 15.0, "pivot_z": 46.0, "pin_d": 5.0,
-    "arm_w": 16.0, "arm_t": 4.0, "bail_arm": 38.0, "rod_d": 16.0, "grip_od": 24.0, "grip_l": 60.0,
+    "head_washer": (9.0, 4.3, 3.0), "pivot_dx": 15.0, "pivot_z": 47.5, "pin_d": 5.0,
+    "arm_w": 16.0, "arm_t": 4.0, "bail_arm": 36.0, "rod_d": 16.0, "grip_od": 24.0, "grip_l": 60.0,
     # 5 keyed nose: tab position across the nose codes the grade (Y of the tab centre); two
     #   M4 x 16 socket cap screws in 5 mm counterbores, 7 mm each side of the tab centre (DDR-003, P6)
     "key_l": 10.0, "key_w": 30.0, "key_h": 16.0, "key_z": 4.0, "key_screw_dy": 7.0, "key_screw_z": 14.0,
     "key_y": {"C5": -43.0, "C25": 0.0, "H70": 43.0, "W0": -61.0},
     "grade": "C5",
+    # 1 grade colour band (TCT-DEC-001 item 7): 18 mm painted band round the nose end of the shell,
+    #   masked, starting 22 mm from the key-end face; paint only, no solid in the assembly
+    "band_x0": 22.0, "band_w": 18.0,
     # 6 label band and melt indicator: a clear polycarbonate tube 6 x 4 mm, 40 long, holding the
     #   grade's PCM, bonded to the shell between two guards of fin bar, in a notch in the label
     #   (DDR-003, P9)
@@ -74,10 +79,12 @@ PARAMS = {
     # 7 adapter frame: bent 1.5 mm aluminium sheet; floor, two side walls, keyed end stop; the side
     #   walls end in 12 mm tabs folded round the outside of the stop, two 3.2 mm rivets each (P7, P8)
     "frame_t": 1.5, "frame_clear": 2.5, "frame_wall_h": 30.0, "stop_h": 40.0,
-    "stop_gap": 2.0, "slot_clear": 3.0, "frame_lead": 4.0, "tab_l": 12.0, "rivet_z": (8.0, 22.0),
-    # Concept handle, kept only for the appearance model cad/src/product_model.py, which still
-    #   draws the concept bail and is updated on Amish's Mac (see docs/REVIEW.md, 2026-10-01).
-    "lug_w": 12.0, "lug_l": 10.0, "lug_h": 16.0, "lug_y": 36.0, "window_d": 22.0, "window_h": 2.0,
+    "stop_gap": 2.0, "slot_clear": 3.0, "tab_l": 12.0, "rivet_z": (8.0, 22.0),
+    #   low lip folded up at the open end (TCT-DEC-001 item 1, option (b)): its inside face is
+    #   lip_gap beyond the seated bottom fins' ends, so the fins drop behind it only when the key is
+    #   through the slot; a wrong grade's key meets the stop 8 mm short of seated and its fins land
+    #   on top of the lip. Three notches let the bottom radial screw heads drop past the lip.
+    "lip_h": 4.0, "lip_gap": 3.0, "lip_notch": 14.0,
 }
 
 Comp = namedtuple("Comp", "name shape bom kind group")
@@ -95,6 +102,7 @@ def derived(p=PARAMS):
     xt0, xt1 = -p["tube_l"] / 2, p["tube_l"] / 2
     xe0, xe1 = xt0 - p["flange_t"], xt1 + p["flange_t"]
     rod_x = xe1 + p["pivot_dx"]                      # bail rod (and pivot) plane when stowed
+    fin_end = xt1 - p["fin_inset"]                   # handle-end ends of the bottom fins
     x_min = xe0 - p["key_l"]
     x_max = max(rod_x + p["grip_od"] / 2, xe1 + p["break_t"] + p["angle"][0])
     fin_pitch = (p["tube_w"] - 2 * p["fin_edge"]) / (p["fin_n"] - 1)
@@ -102,7 +110,9 @@ def derived(p=PARAMS):
     fin_len_top = fin_len_bot - (p["label_band"] - p["fin_inset"] + 1.0)
     frame_in_w = p["tube_w"] + 2 * p["frame_clear"]
     fx0 = xe0 - p["stop_gap"] - p["frame_t"]          # outer face of the end stop
-    fx1 = xe1 + p["frame_lead"]
+    lip_x = fin_end + p["lip_gap"]                   # inside face of the lip
+    fx1 = lip_x + p["frame_t"]                       # outside face of the lip (frame open end)
+    short = p["key_l"] - p["stop_gap"]               # how far short a wrong grade stops (key tip on the stop)
     g = p["gland_depth"]
     sp_w, sp_h = in_w - 2 * g, in_h - 2 * g
     cord_a = math.pi * p["oring_cord"] ** 2 / 4
@@ -119,7 +129,11 @@ def derived(p=PARAMS):
         "overall_h": p["tube_h"] + 2 * p["fin_h"],
         "fin_pitch": fin_pitch, "fin_len_bot": fin_len_bot, "fin_len_top": fin_len_top,
         "frame_w": frame_in_w + 2 * p["frame_t"], "frame_in_w": frame_in_w,
-        "fx0": fx0, "fx1": fx1, "frame_l": fx1 - fx0,
+        "fx0": fx0, "fx1": fx1, "frame_l": fx1 - fx0, "lip_x": lip_x, "fin_end": fin_end,
+        "lip_top": floor_top + p["lip_h"], "short": short,
+        # a wrong grade's bottom fins overlap the lip top by this much (they rest on it)
+        "lip_bearing": fin_end + short - lip_x,
+        "seated_lip_gap": lip_x - fin_end,
         "spacer_w": sp_w, "spacer_h": sp_h, "spacer_r": p["tube_ri"] + g,
         "plug_w": in_w - 2 * p["plug_clear"], "plug_h": in_h - 2 * p["plug_clear"],
         "gland_fill": cord_a / (p["spacer_t"] * g), "squeeze": 1 - g / p["oring_cord"],
@@ -392,7 +406,10 @@ def build_components(p=PARAMS, grade=None):
         tabs -= hole
         rv += [xcyl(fx0 - ft, fx0 + ft, yy, zz, 3.2), xcyl(fx0 + ft, fx0 + ft + 1.0, yy, zz, 6.0),
                xcyl(fx0 - ft - 2.0, fx0 - ft, yy, zz, 4.5)]
-    frame = floor + walls + stop + tabs
+    lip = box(D["lip_x"], fx1, -wi - ft, wi + ft, ft, D["lip_top"])
+    for yy in p["screw_y"]:
+        lip -= box(D["lip_x"] - 1, fx1 + 1, yy - p["lip_notch"] / 2, yy + p["lip_notch"] / 2, ft, D["lip_top"] + 1)
+    frame = floor + walls + stop + tabs + lip
     add("frame", "Adapter frame", frame, 7, "made", "frame")
     add("rivets", "Frame rivets, 3.2 mm blind (4)", fuse(rv), 7, "fixing", "frame")
     return C
@@ -429,6 +446,28 @@ def assembly(p=PARAMS):
     from build123d import Compound
     C = build_components(p)
     return Compound(children=[c.shape for c in C.values()])
+
+
+def grade_band(p=PARAMS, grade=None, thick=0.3):
+    """The painted grade band as a thin skin round the tube (appearance only, not a component)."""
+    D = derived(p)
+    tw, th = p["tube_w"], p["tube_h"]
+    x0 = D["xt0"] + p["band_x0"]
+    ring = (rrect_x(x0, x0 + p["band_w"], tw + 2 * thick, th + 2 * thick, p["tube_ro"] + thick, D["zm"])
+            - rrect_x(x0 - 1, x0 + p["band_w"] + 1, tw, th, p["tube_ro"], D["zm"]))
+    C = build_components(p, grade)
+    return ring - C["fins_bot"].shape - C["fins_top"].shape
+
+
+def wrong_grade(C, grade, p=PARAMS, on_lip=True):
+    """Cartridge components of another grade pushed into a C5 frame until its key meets the stop:
+    moved 12 mm back toward the handle end, and either resting on the lip (on_lip) or, to show it
+    cannot drop in, at the seated height."""
+    from build123d import Pos
+    D = derived(p)
+    W = build_components(p, grade)
+    dz = p["lip_h"] if on_lip else 0.0
+    return {k: Pos(D["short"], 0, dz) * c.shape for k, c in W.items() if c.group != "frame"}
 
 
 def bail_swung(C, angle, p=PARAMS):
@@ -524,6 +563,28 @@ def checks(p=PARAMS):
         sw = bail_swung(C, ang, p)
         chk(f"Bail swung to {ang} degrees clear of the cartridge", sw,
             S("tube", "fins_top", "flange_handle", "port", "lug_bolts", "head_washers", "label", "indicator", "guards"), 2.0)
+    # Frame lip (TCT-DEC-001 item 1): the right grade seats behind it, a wrong grade is held out,
+    # with the bail stowed (0 degrees) and raised (180 degrees)
+    chk("C5 seated: bottom fins behind the lip", S("fins_bot"), S("frame"), "touch")
+    chk("C5 seated: fin ends clear of the lip's inside face", S("fins_bot"),
+        box(D["lip_x"], D["fx1"], -100, 100, 0, D["lip_top"]), p["lip_gap"] - 0.05)
+    chk("C5 seated: radial screw heads clear of the lip notches", S("screws_handle"),
+        S("frame") & box(D["lip_x"] - 0.1, D["fx1"] + 0.1, -100, 100, p["frame_t"], D["lip_top"]), 2.0)
+    for ang in (0, 180):
+        bl = S("arms", "rod", "grip", "rod_screws") if ang == 0 else bail_swung(C, ang, p)
+        chk(f"C5 seated, bail at {ang} degrees: bail clear of the frame and lip", bl, frame, 2.0)
+    from build123d import Axis, Pos
+    for g in [k for k in p["key_y"] if k not in (p["grade"], "W0")]:
+        W = wrong_grade(C, g, p, on_lip=True)
+        chk(f"{g} in the C5 frame: key on the stop face", W["key"], S("frame"), "touch")
+        chk(f"{g} in the C5 frame: bottom fins resting on the lip", W["fins_bot"], S("frame"), "touch")
+        chk(f"{g} in the C5 frame: no other contact with the frame", fuse([W[k] for k in W if k not in ("key", "fins_bot")]), frame, 0.5)
+        v = _vol(wrong_grade(C, g, p, on_lip=False)["fins_bot"], S("frame"))
+        rows.append((f"{g} in the C5 frame: cannot drop to the floor (fins would cut into the lip)", v, 0.0, "blocked", v > 1.0))
+        ax = Axis((D["rod_x"] + D["short"], 0, D["z0"] + p["pivot_z"] + p["lip_h"]), (0, -1, 0))
+        for ang in (0, 180):
+            bl = fuse([W[k].rotate(ax, ang) if ang else W[k] for k in ("arms", "rod", "grip", "rod_screws")])
+            chk(f"{g} in the C5 frame, bail at {ang} degrees: bail clear of the frame", bl, frame, 2.0)
     return rows
 
 
@@ -531,7 +592,7 @@ def print_checks(p=PARAMS):
     rows = checks(p)
     bad = 0
     for desc, v, gp, exp, ok in rows:
-        e = "touch" if exp == "touch" else f">= {exp:g} mm"
+        e = exp if isinstance(exp, str) else f">= {exp:g} mm"
         print(f"  {'ok ' if ok else 'BAD'}  {desc:60s} overlap {v:8.3f} mm3  gap {gp:7.2f} mm  ({e})")
         bad += not ok
     print(f"constructability checks: {len(rows) - bad} of {len(rows)} pass")

@@ -1,5 +1,72 @@
 # Review note: ThermaCart
 
+## Session 2026-10-02: Approved follow-ups carried out
+
+Amish approved on 2026-10-02 that the follow-up actions from the open-decision sign-off be carried out ("APPROVED CHANGES, COMPLETE THESE") and that the render scenes be prepared for new photoreal renders. trl stays 3; no build or test work was done. 10 of 12 follow-ups done.
+
+### Follow-ups
+
+1. Decision 1 (model): done. `cad/src/model.py` has a 4 mm lip folded up at the frame's open end, its inside face 3 mm beyond the seated bottom fins, with three 14 mm notches for the bottom radial screw heads. The stowed grip is 3.5 mm higher (pivot 47.5 mm up, arms 36 mm between holes); its underside is 1.85 mm above the lip top. New checks: the C5 cartridge seats behind the lip, and C25 and H70 cartridges in a C5 frame meet the stop, rest on the lip and cannot drop to the floor, with the bail stowed and raised. 85 of 85 checks pass. STEP and STL regenerated (frame now 283.2 x 160.4 mm, was 294).
+2. Decision 1 (drawings): done. TCT-DWG-001 Rev P5 (lip called out, note added); making sketches TCT-DWG-106 (lug angle), 107 (bail arm), 108 (bail rod) and 110 (frame, with lip, notches and decal) at Rev P2.
+3. Decision 1 (build plan pictures): done. Joints 5 and 10, steps 9 to 12 and the overview regenerated; the R9 check in TCT-BLD-001 Table 2 now reads that the others meet the stop 8 mm short and rest on the lip.
+4. Decision 1 (calculations): done. TCT-CAL-001 v0.5 section G gains G2 (lip) and G3 (grip clearance); the GN 1/3 envelope is unchanged at 323.4 x 152.4 x 63.5 mm; the bail settles at 36.9 and 39.2 °C (was 36.8 and 39.1); the raised finger gap is 39 mm (was 41).
+5. Decision 1 (TRL 4 lid check): not done: TRL 4 work, on hold.
+6. Decision 2 (W0 key fixing): not done: applies when W0 is sized; W0 has no fill or sizing yet, and the published key table is unchanged.
+7. Decision 6 (BOM, conditioning time on the C5 label): done, row 6.
+8. Decision 7 (BOM, grade band): done, row 1 repriced from $29.00 to $30.50 (coloured high-temperature paint and masking tape).
+9. Decision 7 (pictures and renders, grade band): done. Build plan step 2 shows the masked 18 mm band; the appearance model paints it from the model's band (`grade_band()`).
+10. Decision 8 (BOM, side marking): done, row 6 repriced from $4.00 to $5.00 (stencil and paint).
+11. Decision 9 (BOM, frame decal): done, row 7 now $17.50 (lip from the same blank, decal $0.50).
+12. Decision 9 (renders, no rubber feet): done. Feet removed from `cad/src/product_model.py`; the "C5 ONLY" decal kept and moved below the stop's top edge.
+
+Counted against the 12 items, 10 are done and 2 are not done (items 5 and 6).
+
+### Correction found
+
+A wrong grade's key meets the stop 8 mm short of seated, not 12 mm as TCT-DDR-003 (P7, A1), the register's item 1 wording and earlier TCT-CAL-001 versions said: the 2 mm gap between the seated nose flange and the stop has to be subtracted from the 10 mm key, not added. The lip was sized for 8 mm. TCT-DDR-003 and the register's decision row are left as recorded; the build plan, calculation note, requirements and precis now give 8 mm.
+
+### Requirement status changes
+
+None changed category. R9 stays "Met by design" but now rests on the modelled lip instead of a 12 mm stand-off; R14 figures 36.9 and 39.2 °C; R16 cartridge $82.50, $32.50 over its $50 target, frame $17.50.
+
+### Value engineering
+
+Value-engineering target: USD 80. Estimated cost of the constructable design: USD 100 (USD 20 over the target). Empty cartridge 1.80 kg (band and marking paint add about 2 g); filled 2.90 to 2.98 kg; PCM fraction 38.1 to 39.6 %. `budget_usd` unchanged.
+
+### Appearance model and render scenes
+
+`cad/src/product_model.py` now builds every solid from `model.build_components()` (the constructable design: lug angles, sealed screws, G 1/2 plug, melt indicator tube and guards in place of the old sight window) and adds the painted band, side marking and label print, with the C5 conditioning time on the label. The bench top was raised to z = 0 now that the feet are gone. The concept-only handle and sight window parameters were removed from `model.py`. Render scenes exported with `.kit/export_views.py` to `/home/claude/renders/thermacart` (hero, exploded, detail; one .npz and .json each plus `thermacart__jobs.json`). Photoreal renders, `card.png` and `social-preview.png` are to be made on Amish's Mac.
+
+### Documents changed
+
+- `cad/src/model.py`, `cad/src/sheets.py`, `cad/src/build_plan_media.py`, `cad/src/concept_media.py`, `cad/src/product_model.py`; STEP and STL; `cad/drawings/TCT-DWG-001` Rev P5, TCT-DWG-106, 107, 108 and 110 Rev P2; `media/` concept set regenerated
+- `bom/bom.csv` rows 1, 5, 6 and 7; `bom/bom-notes.md`
+- `docs/04-calcs/sizing.py` and TCT-CAL-001 v0.5; TCT-REQ-001 v0.7; TCT-PRC-001 v0.7; TCT-PRB-001 (`docs/01-problem.md`) v0.8; TCT-DEC-001 v0.4 (value engineering); TCT-BLD-001 v0.3; `README.md`
+- PDFs regenerated with `python3 .kit/render.py`
+
+### Cross-repo actions
+
+None.
+
+### Recommended next step
+
+Photoreal renders from the exported scenes on Amish's Mac. TRL 4 remains on hold by Amish's instruction.
+
+## Session 2026-10-02: design-for-construction changes accepted
+
+Amish, 2026-10-02: "APPROVED: Design-for-construction changes in 10 repos (CityTwin, CoolShade, PalletPilot, Heliolite, PotholeLog, EarthPress, ReadyKit, CellCheck, CargoMule and ThermaCart)". This accepts the design-for-construction changes in Tables 1 and 2 of TCT-DDR-003 (P1 to P11 and their knock-on changes), which were left open for his review when the open decisions were decided earlier the same day (session below). No other item is decided by it. trl stays 3; no build or test work was done, and the model, BOM quantities and prices, calculations and pictures are unchanged.
+
+### Documents changed
+
+- `docs/decisions/0003-design-for-construction.md` (TCT-DDR-003 v0.3, status Draft): status line now "accepted" with Amish's words.
+- `docs/06-design-decisions.md` (TCT-DEC-001 v0.3): Decisions made row added, dated 2026-10-02.
+- `docs/05-build-plan.md` (TCT-BLD-001 v0.2): section 2 says TCT-DDR-003 is accepted.
+- PDFs regenerated.
+
+### Recommended next step
+
+No change: the follow-up actions of the session below stand. TRL 4 remains on hold by Amish's instruction.
+
 ## Session 2026-10-02: open decisions decided by Amish
 
 Amish wrote on 2026-10-02: "i approve your recommendations for all 555 open decisions." Every open decision in this repo's register was decided as recommended and moved to "Decisions made" in `docs/06-design-decisions.md`, dated 2026-10-02.
@@ -44,7 +111,7 @@ PDFs re-rendered with `python3 .kit/render.py`. The CAD model, BOM quantities an
 - Value engineering compares like with like (one C5 cartridge and one frame against USD 80), but the cartridge alone is USD 80 against R16's USD 50, so most of the gap is the cartridge, not the frame.
 - REVIEW.md 2026-09-26 items 4 to 7 (sight window build-up, tube corners, pivot pins, cap screws) are not in the register; items 4 and 6 are superseded by TCT-DDR-003 (P9 and the new bail), and 5 is now in 'To confirm when parts are bought'; they can be closed.
 - R9 status was not changed to "at risk" (flag 1); its status cell now says that a wrong grade stands 12 mm proud until the low lip decided on 2026-10-02 is designed. Amish may want the status itself changed.
-- TCT-DDR-003 Tables 1 and 2 (the changes made for construction) were not an open decision in the register, so they remain open for Amish's review; only Table 3 was decided on 2026-10-02.
+- TCT-DDR-003 Tables 1 and 2 (the changes made for construction) were not an open decision in the register, so only Table 3 was decided in this session. Amish accepted Tables 1 and 2 later on 2026-10-02 (see the session above).
 - Item 1 was approved as option (b), the low lip, which differs from the register's earlier recommendation of option (a); the design change is a follow-up, not yet made.
 
 TRL 4 remains on hold by Amish's instruction.
@@ -330,3 +397,7 @@ All open decisions are in the design decisions register (`docs/06-design-decisio
 ### Recommended next step
 
 Review TCT-DDR-003 and decide A1 in the register. TRL 4 (building and testing to TCT-BLD-001) remains on hold.
+
+## 2026-10-02: photoreal renders redone on the constructable design
+
+Rendered with Blender Cycles on Amish's Mac from the updated appearance model; captioned with `.kit/photo_caption.py`; `media/card.png` and `media/social-preview.png` regenerated with `.kit/cards.py`. Views: hero, exploded, detail. image_qc passes. Appearance deviations are those logged above as proposed, awaiting Amish.

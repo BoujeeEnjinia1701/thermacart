@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / ".kit"), str(ROOT / "cad" / "src")]
 import build_views as bv  # noqa: E402
 from build_views import Part  # noqa: E402
-from model import PARAMS as P, build_components, derived, fuse, box  # noqa: E402
+from model import PARAMS as P, build_components, derived, fuse, box, grade_band  # noqa: E402
 
 OUT = ROOT / "docs" / "05-build-plan"
 DWG = ROOT / "cad" / "drawings"
@@ -94,9 +94,17 @@ def sheets(which=None):
     out = []
     cart = [M["tube"], M["fins"], M["cap_key"], M["cap_handle"]]
 
+    P2 = {106: "Pivot hole moved up 1.5 mm (raised grip)", 107: "Arms 36 mm between holes (raised grip)",
+          108: "Rod hangs higher (raised grip)", 110: "Lip at the open end and C5 ONLY decal"}
+
     def sheet(n, *a, **k):
         if which is None or str(n) == str(which):
-            out.append(bv.component_sheet(*a, **k, **base))
+            if n in P2:     # revised 2026-10-02 for TCT-DEC-001 items 1 and 9
+                k = dict(k, rev="P2", revisions=[("P1", "Making sketch for the prototype build plan", DATE, "AC"),
+                                                 ("P2", P2[n], "2026-10-02", "AC")])
+                out.append(bv.component_sheet(*a, **k, **dict(base, date="2026-10-02")))
+            else:
+                out.append(bv.component_sheet(*a, **k, **base))
 
     xs = xt1 - D["x_screw"][1]
     sheet(101, Part("Shell tube", C["tube"].shape, COL["tube"]), [M["fins"], M["cap_key"], M["cap_handle"]],
@@ -197,7 +205,7 @@ def sheets(which=None):
                  "  of the upright leg, 8 and 18 mm up from the bottom end. The",
                  "  bolts pass with 1.25 mm air all round: the bolt must not touch.",
                  "Upright leg: one 5.2 mm pivot hole 12 mm out from the back of",
-                 "  the flat leg, 24 mm up from the bottom end.",
+                 f"  the flat leg, {P['pivot_z'] - P['lug_z0']:g} mm up from the bottom end.",
                  "Left and right are mirror images: drill them as a pair.",
                  "Fit: flat leg on two phenolic washers (9 x 4.5 x 3 mm) per bolt,",
                  "  3 mm off the flange; bottom end 22 mm above the flange's",
@@ -210,9 +218,9 @@ def sheets(which=None):
           dwg_no="TCT-DWG-107", title="ThermaCart bail arm (make 2): making sketch",
           material="6060 flat bar 16 x 4 mm", inset_view=(18, 35),
           view_shape=Pos(-D["rod_x"], 0, -D["grip_z"]) * arm,
-          notes=["Cut two 54 mm lengths of 16 x 4 mm flat bar.",
+          notes=[f"Cut two {P['bail_arm'] + P['arm_w']:.0f} mm lengths of 16 x 4 mm flat bar.",
                  "Round both ends to an 8 mm radius (file to a scribed circle).",
-                 "Two holes on the centre line, 8 mm from each end (38 mm apart):",
+                 f"Two holes on the centre line, 8 mm from each end ({P['bail_arm']:.0f} mm apart):",
                  "  5.2 mm at the top (pivot), 6.5 mm at the bottom (rod end).",
                  "Drill the two arms clamped together so the holes match.",
                  "Fit: the arm lies flat on the outside of the angle's upright leg;",
@@ -222,7 +230,7 @@ def sheets(which=None):
                  "  button-head screw through the arm into the rod.",
                  "Stowed, the arm hangs straight down; raised, the grip is",
                  f"  {D['finger_gap']:.0f} mm from the end face (room for fingers).",
-                 "Check: hole centres 38 mm apart, within 0.5 mm."])
+                 f"Check: hole centres {P['bail_arm']:.0f} mm apart, within 0.5 mm."])
     rod = C["rod"].shape
     sheet(108, Part("Bail rod", rod, COL["rod"]), [part("Arms", S("arms", "pins"), COL["arm"]), M["lugs"], M["cap_handle"]],
           dwg_no="TCT-DWG-108", title="ThermaCart bail rod: making sketch",
@@ -236,8 +244,9 @@ def sheets(which=None):
                  "  water helps; let it dry).",
                  "Fit: between the two arms' inside faces, held by one M6 x 12",
                  "  button-head screw through each arm, with medium threadlocker.",
-                 "Stowed, the rod hangs 8 mm above the tube's underside, 15 mm",
-                 "  out from the end face; the grip clears the flange by 3 mm.",
+                 f"Stowed, the rod hangs {D['grip_z'] - D['z0']:g} mm above the tube's underside, 15 mm",
+                 "  out from the end face; the grip clears the flange by 3 mm",
+                 "  and stays above the frame's lip.",
                  "Leave the rod bare: the bail is not painted.",
                  "Check: 80 mm long, within 0.3 mm, so the arms are not",
                  "  pulled in or pushed out."])
@@ -276,6 +285,10 @@ def sheets(which=None):
                  "  then fold each tab round the outside of the stop.",
                  "Drill 3.3 mm through tab and stop, 6 mm in from the wall, 8 and",
                  "  22 mm above the floor; rivet with heads inside the frame.",
+                 f"Lip: fold the open end of the floor up {P['lip_h']:.0f} mm; cut three",
+                 f"  {P['lip_notch']:.0f} mm notches in it, centred 41.75 mm and 8.25 mm toward",
+                 "  the front and 58.25 mm toward the back, for the screw heads.",
+                 "Stick the \"C5 ONLY\" decal on the stop beside the slot.",
                  "Check: inside width 157.4 mm; stop square to the floor."])
     return out
 
@@ -478,7 +491,7 @@ def joints(which=None):
             (part("Key-end flange (2 mm off the stop)", win(C["flange_key"].shape, *b_), COL["flange"]), (xe0, ky + 10, z1 - 4)),
             (part("Tube", win(S("tube", "fins_bot", "fins_top"), *b_), COL["tube"]), (xt0 + 20, -P["tube_w"] / 2, z1 - 12))],
        "Joint 10: seated cartridge, key through the slot in the stop",
-       "3 mm clear round the key; a wrong grade's key meets the stop and the cartridge stays 12 mm short",
+       "3 mm clear round the key; a wrong grade's key meets the stop 8 mm short, so its fins rest on the lip",
        elev=28, azim=-150)
     return out
 
@@ -498,8 +511,9 @@ def steps(which=None):
     st(1, [tube], [mv(part("Bottom fins (9)", C["fins_bot"].shape, COL["fins"]), (0, 0, -70))],
        "bottom fins onto the tube", "Tube upside down in the comb jig; epoxy bead and fillets; cure before turning over. Seen from below",
        elev=-30, azim=-55)
-    st(2, [tube, part("Bottom fins", C["fins_bot"].shape, COL["fins"])], [mv(part("Top fins (9)", C["fins_top"].shape, COL["fins"]), (0, 0, 70))],
-       "top fins onto the tube", "Key end flush with the bottom fins; 96 mm left bare at the handle end for the label. Then prime and paint",
+    st(2, [tube, part("Bottom fins", C["fins_bot"].shape, COL["fins"])], [mv(part("Top fins (9)", C["fins_top"].shape, COL["fins"]), (0, 0, 70)),
+                                                                         mv(part("18 mm grade band, masked and painted blue", grade_band(P), "#2F6DB3"), (0, 0, 0))],
+       "top fins, then paint and the grade band", "Key end flush; 96 mm bare for the label. Prime and paint black; then mask an 18 mm band 22 mm from the key end and paint it blue",
        elev=28, azim=-55, label_done=False)
     shell = [tube, part("Fins", S("fins_bot", "fins_top"), COL["fins"])]
     capk = part("Key-end cap stack", S("flange_key", "spacer_key", "plug_key"), COL["flange"])
@@ -551,7 +565,7 @@ def steps(which=None):
        elev=35, azim=-55, label_done=False)
     done = full + [part("Label and indicator", S("label", "indicator", "guards"), COL["ind"])]
     st(12, [M["frame"]], [mv(part("Finished cartridge (C5)", fuse([p.shape for p in done]), "#374151"), (40, 0, 140))],
-       "cartridge into the adapter frame", "Lower it in 15 mm back from the stop, then slide it forward until the key passes through the slot",
+       "cartridge into the adapter frame", "Nose first, handle end held above the lip; slide forward until the key passes the slot, then the fins drop behind the lip",
        elev=24, azim=-50)
     return out
 
